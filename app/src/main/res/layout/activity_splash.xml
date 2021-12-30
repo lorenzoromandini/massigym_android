@@ -7,13 +7,4 @@
     android:background="@drawable/logo_start_screen"
     tools:context=".SplashActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Porcooo"
-        >
-
-    </TextView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,19 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Massigym_android">
-        <activity android:name=".SplashActivity"
+        <activity android:name=".ui.auth.RegistrationActivity"></activity>
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Massigym_android.NoActionBar"
-            >
+            android:theme="@style/Theme.Massigym_android.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
