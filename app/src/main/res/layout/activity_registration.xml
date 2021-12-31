@@ -9,6 +9,22 @@
     android:background="@color/white"
     tools:context=".ui.auth.RegistrationActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_registration"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Registrazione"
+            app:titleTextColor="@color/white"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ImageView
         android:id="@+id/logo_registration"
         android:layout_width="200dp"
@@ -131,7 +147,7 @@
             />
 
         <TextView
-            android:id="@+id/goToRegister"
+            android:id="@+id/goToLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Torna al Login"
