@@ -6,32 +6,22 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
-import com.example.massigym_android.R
 import com.example.massigym_android.databinding.ActivityLoginBinding
-import com.example.massigym_android.ui.HomeFragment
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
-    lateinit var email: TextInputEditText
-    lateinit var emailLayout: TextInputLayout
-    lateinit var password: TextInputEditText
-    lateinit var passwordLayout: TextInputLayout
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        email = binding.loginEmail
-        emailLayout = binding.emailTextInputLayout
-        password = binding.loginPassword
-        passwordLayout = binding.passwordTextInputLayout
 
         binding.loginButton.setOnClickListener {
             login()
@@ -44,34 +34,41 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login() {
-        if(TextUtils.isEmpty(email.text.toString())) {
+
+        val email = binding.loginEmail.text.toString().trim()
+        val emailLayout = binding.emailTextInputLayout
+        val password = binding.loginPassword.text.toString().trim()
+        val passwordLayout = binding.passwordTextInputLayout
+
+        if (TextUtils.isEmpty(email)) {
             emailLayout.error = "Email richiesta"
             return
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email.toString().trim()).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailLayout.error = "Immettere una Email valida"
+            return
         }
-            if (TextUtils.isEmpty(password.text.toString())) {
-                passwordLayout.error = "Password richiesta"
+        if (TextUtils.isEmpty(password)) {
+            passwordLayout.error = "Password richiesta"
+            return
         }
-
-        if(password.text.toString().trim().length < 6) {
+        if (password.length < 6) {
             passwordLayout.error = "Immettere una Password valida. (Min. 6 caratteri)"
+            return
         }
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email.toString().trim(), password.text.toString().trim())
-            .addOnCompleteListener(this) { task ->
-                if(task.isSuccessful) {
-                    val intent = Intent(this, HomeFragment::class.java)
+        FirebaseAuth.getInstance()
+            .signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(OnCompleteListener<AuthResult> { task ->
+                if (task.isSuccessful) {
+                    val intent = Intent(this, RegistrationActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
                     Toast.makeText(baseContext, "Authentication failed", Toast.LENGTH_LONG).show()
                 }
-            }
+            })
     }
-
-
 
 
 }

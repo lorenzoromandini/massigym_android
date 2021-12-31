@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.massigym_android.databinding.ActivityMainBinding
-import com.example.massigym_android.ui.HomeFragment
 import com.example.massigym_android.ui.auth.LoginActivity
+import com.example.massigym_android.ui.auth.RegistrationActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         if (user != null) {
-            val intent = Intent(this, HomeFragment::class.java)
+            val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
             finish()
         } else {

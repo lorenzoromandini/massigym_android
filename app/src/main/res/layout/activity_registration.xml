@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/white"
     tools:context=".ui.auth.RegistrationActivity">
 
@@ -13,6 +12,7 @@
         android:id="@+id/appbar_registration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,6 +29,7 @@
         android:id="@+id/logo_registration"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         app:srcCompat="@drawable/icon" />
 
@@ -40,7 +41,7 @@
         android:layout_marginTop="30dp"
         app:errorEnabled="true"
         app:errorTextColor="@color/errors"
-        app:startIconDrawable="@drawable/ic_email">
+        app:startIconDrawable="@drawable/ic_user">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/registrationUsername"
@@ -120,7 +121,7 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:text="Registrati"
         android:textAllCaps="false"

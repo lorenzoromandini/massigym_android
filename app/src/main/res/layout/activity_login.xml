@@ -5,36 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/white"
     tools:context=".ui.auth.LoginActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/appbar_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_login"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="Login"
-                app:titleTextColor="@color/white"/>
-        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_login"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Login"
+            app:titleTextColor="@color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
         android:id="@+id/logo_login"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
         app:srcCompat="@drawable/icon" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/emailTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="68dp"
         android:layout_gravity="center_horizontal"
@@ -55,16 +55,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/passwordTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="68dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
         app:errorEnabled="true"
-        app:passwordToggleEnabled="true"
         app:errorTextColor="@color/errors"
-        app:startIconDrawable="@drawable/ic_key" >
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_key">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginPassword"
@@ -79,16 +79,16 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/button"
         android:text="Login"
         android:textAllCaps="false"
-        android:textSize="20sp"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/button"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -97,21 +97,20 @@
         android:orientation="horizontal"
         android:padding="15dp">
 
-    <TextView
-        android:id="@+id/notYetRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Non sei ancora registrato? "
-        android:textColor="@color/black"
-        />
+        <TextView
+            android:id="@+id/notYetRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non sei ancora registrato? "
+            android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/goToRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registrati"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/goToRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registrati"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
