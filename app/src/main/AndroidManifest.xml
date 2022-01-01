@@ -14,7 +14,8 @@
         </activity>
         <activity
             android:name=".ui.auth.LoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
@@ -26,7 +27,12 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".BottomNavBar"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

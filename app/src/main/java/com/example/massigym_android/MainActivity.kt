@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         if (user != null) {
-            val intent = Intent(this, RegistrationActivity::class.java)
+            val intent = Intent(this, BottomNavBar::class.java)
             startActivity(intent)
             finish()
         } else {

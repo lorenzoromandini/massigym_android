@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
+import com.example.massigym_android.BottomNavBar
 import com.example.massigym_android.databinding.ActivityLoginBinding
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
@@ -28,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.goToRegister.setOnClickListener {
-            val intent = Intent(this@LoginActivity, RegistrationActivity::class.java)
+            val intent = Intent(this@LoginActivity, BottomNavBar::class.java)
             startActivity(intent)
         }
     }

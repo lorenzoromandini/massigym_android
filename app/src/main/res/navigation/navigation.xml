@@ -1,0 +1,28 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@+id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.massigym_android.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="com.example.massigym_android.WorkoutFragment"
+        android:label="Workout"
+        tools:layout="@layout/fragment_workout">
+    </fragment>
+
+    <fragment
+        android:id="@+id/personaleFragment"
+        android:name="com.example.massigym_android.PersonaleFragment"
+        android:label="Personale"
+        tools:layout="@layout/fragment_personale">
+    </fragment>
+
+</navigation>

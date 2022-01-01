@@ -19,6 +19,7 @@ class RegistrationActivity : AppCompatActivity() {
         binding.goToLogin.setOnClickListener {
             val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
