@@ -20,6 +20,7 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var usernameInput: TextInputEditText
     private lateinit var emailInput: TextInputEditText
     private lateinit var passwordInput: TextInputEditText
+    private lateinit var confermaPasswordInput: TextInputEditText
 
     private lateinit var auth: FirebaseAuth
 
@@ -29,47 +30,77 @@ class RegistrationActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.goToLogin.setOnClickListener {
+            val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         usernameInput = binding.registrationUsername
         emailInput = binding.registrationEmail
         passwordInput = binding.registrationPassword
+        confermaPasswordInput = binding.registrationConfirmPassword
 
         auth = FirebaseAuth.getInstance()
-
-
 
         binding.registrationButton.setOnClickListener {
             try {
                 val username = usernameInput.text.toString().trim()
                 val email = emailInput.text.toString().trim()
                 val password = passwordInput.text.toString().trim()
+
                 signUp(email, password, username)
 
             } catch (e: Exception) {
                 //nel caso in cui l'utente clicchi sul bottone registra senza inserire uno dei campi richiesti
-                if (TextUtils.isEmpty(usernameInput.text.toString().trim()) && TextUtils.isEmpty(
-                        emailInput.text.toString().trim()) && TextUtils.isEmpty(passwordInput.text.toString().trim())) {
-                    usernameInput.error = "Per favore inserisci il tuo nome"
-                    emailInput.error = "Per favore inserisci la tua mail"
-                    passwordInput.error =
-                        "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
+                /*
+            if (TextUtils.isEmpty(usernameInput.text.toString().trim()) && TextUtils.isEmpty(
+                    emailInput.text.toString().trim()) && TextUtils.isEmpty(passwordInput.text.toString().trim())) {
+                usernameInput.error = "Per favore inserisci il tuo nome"
+                emailInput.error = "Per favore inserisci la tua mail"
+                passwordInput.error =
+                    "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
+                return@setOnClickListener
+            } else if (TextUtils.isEmpty(usernameInput.text.toString().trim())) {
+                usernameInput.error = "Per favore inserisci il tuo nome"
+                return@setOnClickListener
+            } else if (TextUtils.isEmpty(emailInput.text.toString().trim())) {
+                emailInput.error = "Per favore inserisci la tua mail"
+                return@setOnClickListener
+            } else if (TextUtils.isEmpty(passwordInput.text.toString().trim())) {
+                passwordInput.error =
+                    "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
+                return@setOnClickListener
+            }
+            */
+                if (TextUtils.isEmpty(usernameInput.text.toString().trim()) || TextUtils.isEmpty(
+                        emailInput.text.toString()
+                            .trim()) || TextUtils.isEmpty(passwordInput.text.toString()
+                        .trim()) || TextUtils.isEmpty(confermaPasswordInput.text.toString().trim())
+                ) {
+                    if (TextUtils.isEmpty(usernameInput.text.toString().trim())) {
+                        usernameInput.error = "Per favore inserisci il tuo nome"
+                    }
+                    if (TextUtils.isEmpty(emailInput.text.toString().trim())) {
+                        emailInput.error = "Per favore inserisci la tua mail"
+                    }
+                    if (TextUtils.isEmpty(passwordInput.text.toString().trim())) {
+                        passwordInput.error =
+                            "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
+                    }
+                    if (TextUtils.isEmpty(confermaPasswordInput.text.toString().trim())) {
+                        confermaPasswordInput.error =
+                            "Per favore inserisci la conferma password"
+                    }
                     return@setOnClickListener
-                } else if (TextUtils.isEmpty(usernameInput.text.toString().trim())) {
-                    usernameInput.error = "Per favore inserisci il tuo nome"
-                    return@setOnClickListener
-                } else if (TextUtils.isEmpty(emailInput.text.toString().trim())) {
-                    emailInput.error = "Per favore inserisci la tua mail"
-                    return@setOnClickListener
-                } else if (TextUtils.isEmpty(passwordInput.text.toString().trim())) {
-                    passwordInput.error =
-                        "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
+                } else if (passwordInput.text.toString()
+                        .trim() != confermaPasswordInput.text.toString().trim()
+                ) {
+                    confermaPasswordInput.error =
+                        "Password e Conferma Password non coincidono"
                     return@setOnClickListener
                 }
             }
-        }
-
-        binding.goToLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
         }
     }
 
@@ -98,7 +129,7 @@ class RegistrationActivity : AppCompatActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         val userMap: MutableMap<String, Any> = HashMap()
         userMap["username"] = username
-        userMap["profileImageUrl"] = ""
+        userMap["imageUrl"] = ""
         FirebaseFirestore.getInstance()
             .collection("users").document(user!!.email!!).set(userMap)
     }

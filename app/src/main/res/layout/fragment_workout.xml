@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
@@ -7,11 +8,38 @@
         android:layout_height="match_parent"
         tools:context=".WorkoutFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_workout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/indigo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_workout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                app:title="Workout"
+                app:titleTextColor="@color/white" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabBar_workout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                app:tabMode="fixed" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </com.google.android.material.appbar.AppBarLayout>
 
     </FrameLayout>
 

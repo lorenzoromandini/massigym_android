@@ -1,20 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ProfiloFragment">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_profilo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/indigo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_profilo"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:menu="@menu/menu_logout"
+                app:title="Profilo"
+                app:titleTextColor="@color/white" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_marginHorizontal="20dp">
+
+            <Button
+                android:id="@+id/selectImageButton"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="400dp"
+                android:background="@drawable/button_rounded"
+                android:text="Seleziona Immagine"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/shootPhotoButton"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="400dp"
+                android:background="@drawable/button_rounded"
+                android:text="Scatta Foto"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <Button
-            android:id="@+id/logoutButton"
+            android:id="@+id/changePasswordButton"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="600dp"
             android:background="@drawable/button_rounded"
-            android:text="Logout"
+            android:text="Modifica Password"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"

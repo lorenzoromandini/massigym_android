@@ -27,13 +27,22 @@ class ProfiloFragment : Fragment() {
 
 
 
-        binding.logoutButton.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(context, LoginActivity::class.java))
-            Toast.makeText(context, "Logout effettuato", Toast.LENGTH_SHORT).show()
+
+
+
+        val logoutMenu = binding.toolbarProfilo.menu.getItem(0)
+        logoutMenu.setOnMenuItemClickListener {
+            logout()
+            true
         }
 
         return binding.root
+    }
+
+    private fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(context, LoginActivity::class.java))
+        Toast.makeText(context, "Logout effettuato", Toast.LENGTH_SHORT).show()
     }
 
 }
