@@ -5,14 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.Button
 import android.widget.Toast
-import com.example.massigym_android.R
+import com.example.massigym_android.BottomNavBar
 import com.example.massigym_android.databinding.ActivityRegistrationBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.HashMap
 
@@ -38,32 +35,31 @@ class RegistrationActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val username = usernameInput.text.toString()
-        val email = emailInput.text.toString()
-        val password = passwordInput.text.toString()
 
-        //al click sul bottone reigstra
+
         binding.registrationButton.setOnClickListener {
             try {
+                val username = usernameInput.text.toString().trim()
+                val email = emailInput.text.toString().trim()
+                val password = passwordInput.text.toString().trim()
                 signUp(email, password, username)
 
             } catch (e: Exception) {
                 //nel caso in cui l'utente clicchi sul bottone registra senza inserire uno dei campi richiesti
-                if (TextUtils.isEmpty(username) && TextUtils.isEmpty(
-                        email) && TextUtils.isEmpty(password)
-                ) {
+                if (TextUtils.isEmpty(usernameInput.text.toString().trim()) && TextUtils.isEmpty(
+                        emailInput.text.toString().trim()) && TextUtils.isEmpty(passwordInput.text.toString().trim())) {
                     usernameInput.error = "Per favore inserisci il tuo nome"
                     emailInput.error = "Per favore inserisci la tua mail"
                     passwordInput.error =
                         "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
                     return@setOnClickListener
-                } else if (TextUtils.isEmpty(username)) {
+                } else if (TextUtils.isEmpty(usernameInput.text.toString().trim())) {
                     usernameInput.error = "Per favore inserisci il tuo nome"
                     return@setOnClickListener
-                } else if (TextUtils.isEmpty(email)) {
+                } else if (TextUtils.isEmpty(emailInput.text.toString().trim())) {
                     emailInput.error = "Per favore inserisci la tua mail"
                     return@setOnClickListener
-                } else if (TextUtils.isEmpty(password)) {
+                } else if (TextUtils.isEmpty(passwordInput.text.toString().trim())) {
                     passwordInput.error =
                         "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
                     return@setOnClickListener
@@ -83,6 +79,9 @@ class RegistrationActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     postToFirestore(username)
+                    val intent = Intent(this, BottomNavBar::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     task.exception!!.printStackTrace()
                     Toast.makeText(

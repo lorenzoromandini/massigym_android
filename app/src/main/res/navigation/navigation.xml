@@ -23,6 +23,36 @@
         android:name="com.example.massigym_android.PersonaleFragment"
         android:label="Personale"
         tools:layout="@layout/fragment_personale">
+        <action
+            android:id="@+id/from_personale_to_personalWorkout"
+            app:destination="@id/personalWorkoutFragment" />
+        <action
+            android:id="@+id/from_personale_to_preferiti"
+            app:destination="@id/preferitiFragment" />
+        <action
+            android:id="@+id/from_personale_to_profilo"
+            app:destination="@id/profiloFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/personalWorkoutFragment"
+        android:name="com.example.massigym_android.PersonalWorkoutFragment"
+        android:label="I miei Workout"
+        tools:layout="@layout/fragment_personal_workout">
+    </fragment>
+
+    <fragment
+        android:id="@+id/preferitiFragment"
+        android:name="com.example.massigym_android.PreferitiFragment"
+        android:label="Personale"
+        tools:layout="@layout/fragment_preferiti">
+    </fragment>
+
+    <fragment
+        android:id="@+id/profiloFragment"
+        android:name="com.example.massigym_android.ProfiloFragment"
+        android:label="Personale"
+        tools:layout="@layout/fragment_profilo">
     </fragment>
 
 </navigation>

@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.goToRegister.setOnClickListener {
-            val intent = Intent(this@LoginActivity, BottomNavBar::class.java)
+            val intent = Intent(this@LoginActivity, RegistrationActivity::class.java)
             startActivity(intent)
         }
     }
@@ -60,8 +60,9 @@ class LoginActivity : AppCompatActivity() {
             .signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(OnCompleteListener<AuthResult> { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this, RegistrationActivity::class.java)
+                    val intent = Intent(this, BottomNavBar::class.java)
                     startActivity(intent)
+                    Toast.makeText(this@LoginActivity, "Login effettuato", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
                     Toast.makeText(baseContext, "Authentication failed", Toast.LENGTH_LONG).show()
