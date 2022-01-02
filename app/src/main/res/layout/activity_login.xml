@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="35dp"
-        android:background="@drawable/button"
+        android:background="@drawable/button_rounded"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/white"
