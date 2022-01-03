@@ -1,4 +1,4 @@
-package com.example.massigym_android
+package com.example.massigym_android.ui.personale
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import com.example.massigym_android.R
 import com.example.massigym_android.databinding.FragmentPersonaleBinding
 
 class PersonaleFragment : Fragment() {

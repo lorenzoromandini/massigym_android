@@ -18,6 +18,8 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        binding.categoryCardio.categoryTitle.setText("Porcoooo")
+
         return binding.root
     }
 

@@ -1,4 +1,4 @@
-package com.example.massigym_android
+package com.example.massigym_android.ui.personale
 
 import android.content.Intent
 import android.os.Bundle
@@ -24,7 +24,7 @@ class ChangePasswordFragment : Fragment() {
     private lateinit var passwordInput: TextInputEditText
     private lateinit var confermaPasswordInput: TextInputEditText
 
-    private lateinit var auth: FirebaseUser
+    private lateinit var user: FirebaseUser
 
     private lateinit var toolbar: Toolbar
 
@@ -41,7 +41,7 @@ class ChangePasswordFragment : Fragment() {
         passwordInput = binding.changeNewPassword
         confermaPasswordInput = binding.changeConfirmPassword
 
-        auth = FirebaseAuth.getInstance().currentUser!!
+        user = FirebaseAuth.getInstance().currentUser!!
 
         binding.changePasswordButton.setOnClickListener {
             try {
@@ -82,7 +82,7 @@ class ChangePasswordFragment : Fragment() {
     }
 
     private fun changePassword(password: String) {
-        auth.updatePassword(password)
+        user.updatePassword(password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(

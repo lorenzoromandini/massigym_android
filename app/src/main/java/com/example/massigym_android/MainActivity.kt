@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.massigym_android.databinding.ActivityMainBinding
 import com.example.massigym_android.ui.auth.LoginActivity
-import com.example.massigym_android.ui.auth.RegistrationActivity
+import com.example.massigym_android.ui.common.BottomNavBar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 

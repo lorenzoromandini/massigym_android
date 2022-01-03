@@ -1,12 +1,11 @@
 package com.example.massigym_android.ui.auth
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
-import com.example.massigym_android.BottomNavBar
+import com.example.massigym_android.ui.common.BottomNavBar
 import com.example.massigym_android.databinding.ActivityRegistrationBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth

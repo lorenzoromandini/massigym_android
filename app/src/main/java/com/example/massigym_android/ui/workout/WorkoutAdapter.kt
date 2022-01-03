@@ -1,4 +1,4 @@
-package com.example.massigym_android
+package com.example.massigym_android.ui.workout
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -20,8 +20,8 @@ class WorkoutAdapter(fragment: Fragment) :
      * Mapping of the ViewPager page indexes to their respective Fragments
      */
     private val tabFragmentsCreator : Map<Int, ()->Fragment> = mapOf(
-        CARDIO_PAGE_INDEX to {CardioFragment()},
-        LEGS_PAGE_INDEX to {LegsFragment()},
-        ARMS_PAGE_INDEX to{ArmsFragment()}
+        CARDIO_PAGE_INDEX to { CardioFragment() },
+        LEGS_PAGE_INDEX to { LegsFragment() },
+        ARMS_PAGE_INDEX to{ ArmsFragment() }
     )
 }

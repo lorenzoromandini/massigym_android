@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/workoutFragment"
-        android:name="com.example.massigym_android.WorkoutFragment"
+        android:name="com.example.massigym_android.ui.workout.WorkoutFragment"
         android:label="Workout"
         tools:layout="@layout/fragment_workout">
         <action
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/workoutDetailsFragment"
-        android:name="com.example.massigym_android.WorkoutDetailsFragment"
+        android:name="com.example.massigym_android.ui.workout.WorkoutDetailsFragment"
         android:label="Workout"
         tools:layout="@layout/fragment_workout_details">
         <action
@@ -35,19 +35,19 @@
 
     <fragment
         android:id="@+id/workoutTimerFragment"
-        android:name="com.example.massigym_android.WorkoutTimerFragment"
+        android:name="com.example.massigym_android.ui.workout.WorkoutTimerFragment"
         android:label="Workout"
         tools:layout="@layout/fragment_workout_timer"></fragment>
 
     <fragment
         android:id="@+id/workoutVideoFragment"
-        android:name="com.example.massigym_android.WorkoutVideoFragment"
+        android:name="com.example.massigym_android.ui.workout.WorkoutVideoFragment"
         android:label="Workout"
         tools:layout="@layout/fragment_workout_video"></fragment>
 
     <fragment
         android:id="@+id/personaleFragment"
-        android:name="com.example.massigym_android.PersonaleFragment"
+        android:name="com.example.massigym_android.ui.personale.PersonaleFragment"
         android:label="Personale"
         tools:layout="@layout/fragment_personale">
         <action
@@ -63,7 +63,7 @@
 
     <fragment
         android:id="@+id/personalWorkoutFragment"
-        android:name="com.example.massigym_android.PersonalWorkoutFragment"
+        android:name="com.example.massigym_android.ui.personale.PersonalWorkoutFragment"
         android:label="I miei Workout"
         tools:layout="@layout/fragment_personal_workout">
         <action
@@ -73,7 +73,7 @@
 
     <fragment
         android:id="@+id/preferitiFragment"
-        android:name="com.example.massigym_android.PreferitiFragment"
+        android:name="com.example.massigym_android.ui.personale.PreferitiFragment"
         android:label="Personale"
         tools:layout="@layout/fragment_preferiti">
         <action
@@ -83,7 +83,7 @@
 
     <fragment
         android:id="@+id/profiloFragment"
-        android:name="com.example.massigym_android.ProfiloFragment"
+        android:name="com.example.massigym_android.ui.personale.ProfiloFragment"
         android:label="Personale"
         tools:layout="@layout/fragment_profilo">
         <action
@@ -92,7 +92,7 @@
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.example.massigym_android.ChangePasswordFragment"
+        android:name="com.example.massigym_android.ui.personale.ChangePasswordFragment"
         android:label="Modifica Password"
         tools:layout="@layout/fragment_profilo"></fragment>
 

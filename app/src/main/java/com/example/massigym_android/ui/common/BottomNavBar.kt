@@ -1,12 +1,10 @@
-package com.example.massigym_android
+package com.example.massigym_android.ui.common
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.example.massigym_android.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 

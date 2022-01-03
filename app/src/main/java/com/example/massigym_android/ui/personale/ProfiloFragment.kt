@@ -1,4 +1,4 @@
-package com.example.massigym_android
+package com.example.massigym_android.ui.personale
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.massigym_android.R
 import com.example.massigym_android.databinding.FragmentProfiloBinding
 import com.example.massigym_android.ui.auth.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +29,7 @@ class ProfiloFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
 
-        val binding = FragmentProfiloBinding.inflate(inflater, container, false)
+        binding = FragmentProfiloBinding.inflate(inflater, container, false)
 
         setupToolbarWithNavigation()
 

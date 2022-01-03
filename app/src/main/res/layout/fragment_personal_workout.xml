@@ -6,7 +6,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".PersonalWorkoutFragment">
+        tools:context=".ui.personale.PersonalWorkoutFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_personalWorkout"

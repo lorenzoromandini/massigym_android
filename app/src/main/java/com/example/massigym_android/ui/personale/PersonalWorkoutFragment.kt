@@ -1,4 +1,4 @@
-package com.example.massigym_android
+package com.example.massigym_android.ui.personale
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
-import com.example.massigym_android.databinding.FragmentPreferitiBinding
+import com.example.massigym_android.databinding.FragmentPersonalWorkoutBinding
 
-class PreferitiFragment : Fragment() {
+class PersonalWorkoutFragment : Fragment() {
 
-    private lateinit var binding: FragmentPreferitiBinding
+    private lateinit var binding: FragmentPersonalWorkoutBinding
 
     private lateinit var toolbar: Toolbar
 
@@ -20,15 +20,16 @@ class PreferitiFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
 
-        binding = FragmentPreferitiBinding.inflate(inflater, container, false)
+        binding = FragmentPersonalWorkoutBinding.inflate(inflater, container, false)
 
         setupToolbarWithNavigation()
+
 
         return binding.root
     }
 
     private fun setupToolbarWithNavigation() {
-        toolbar = binding.toolbarPreferiti
+        toolbar = binding.toolbarPersonalWorkout
         toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }

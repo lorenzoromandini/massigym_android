@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
-import com.example.massigym_android.BottomNavBar
+import com.example.massigym_android.ui.common.BottomNavBar
 import com.example.massigym_android.databinding.ActivityLoginBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult

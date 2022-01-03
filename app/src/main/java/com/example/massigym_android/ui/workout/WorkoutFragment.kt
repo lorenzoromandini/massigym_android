@@ -1,4 +1,4 @@
-package com.example.massigym_android
+package com.example.massigym_android.ui.workout
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
