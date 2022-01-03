@@ -5,19 +5,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.fragment.findNavController
 import com.example.massigym_android.databinding.FragmentPersonalWorkoutBinding
 
 class PersonalWorkoutFragment : Fragment() {
+
+    private lateinit var binding: FragmentPersonalWorkoutBinding
+
+    private lateinit var toolbar: Toolbar
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
 
-        val binding: FragmentPersonalWorkoutBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_personal_workout, container, false)
+        binding = FragmentPersonalWorkoutBinding.inflate(inflater, container, false)
+
+        setupToolbarWithNavigation()
 
 
         return binding.root
+    }
+
+    private fun setupToolbarWithNavigation() {
+        toolbar = binding.toolbarPersonalWorkout
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 }

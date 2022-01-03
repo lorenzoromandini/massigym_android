@@ -5,26 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.massigym_android.databinding.FragmentPersonaleBinding
-import com.google.firebase.auth.FirebaseAuth
 
 class PersonaleFragment : Fragment() {
+
+    private lateinit var binding: FragmentPersonaleBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
 
-        val binding: FragmentPersonaleBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_personale, container, false)
-
-
-
+        binding = FragmentPersonaleBinding.inflate(inflater, container, false)
 
         binding.personalWorkoutButton.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.from_personale_to_personalWorkout)
+            binding.root.findNavController()
+                .navigate(R.id.from_personale_to_personalWorkout)
         }
 
         binding.preferitiButton.setOnClickListener {

@@ -5,19 +5,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.fragment.findNavController
 import com.example.massigym_android.databinding.FragmentPreferitiBinding
 
 class PreferitiFragment : Fragment() {
+
+    private lateinit var binding: FragmentPreferitiBinding
+
+    private lateinit var toolbar: Toolbar
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
 
-        val binding: FragmentPreferitiBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_preferiti, container, false)
+        binding = FragmentPreferitiBinding.inflate(inflater, container, false)
 
+        setupToolbarWithNavigation()
 
         return binding.root
+    }
+
+    private fun setupToolbarWithNavigation() {
+        toolbar = binding.toolbarPreferiti
+        toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 }
