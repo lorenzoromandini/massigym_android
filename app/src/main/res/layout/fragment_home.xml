@@ -56,8 +56,6 @@
                 <include
                     android:id="@+id/category_cardio"
                     layout="@layout/category_view_item"
-                    app:overview="@{&quot;Sottotitolo1&quot;}"
-                    app:description="@{&quot;Ciao&quot;}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
@@ -67,9 +65,6 @@
                 <include
                     android:id="@+id/category_legs"
                     layout="@layout/category_view_item"
-                    app:title="@{&quot;titolo2&quot;}"
-                    app:overview="@{&quot;Ciao&quot;}"
-                    app:description="@{&quot;Ciao&quot;}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
@@ -80,9 +75,6 @@
                 <include
                     android:id="@+id/category_arms"
                     layout="@layout/category_view_item"
-                    app:title="@{&quot;Ciao&quot;}"
-                    app:overview="@{&quot;Ciao&quot;}"
-                    app:description="@{&quot;Ciao&quot;}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"

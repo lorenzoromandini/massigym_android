@@ -3,19 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="image"
-            type="String"/>
-
-        <variable
-            name="overview"
-            type="String"/>
-        <variable
-            name="description"
-            type="String"/>
-    </data>
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/category_item_container"
         android:layout_width="match_parent"
@@ -33,7 +20,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/cat_cardio"
                 tools:src="@drawable/cat_cardio" />
 
             <LinearLayout
@@ -56,7 +42,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{overview}"
                     android:textAppearance="?attr/textAppearanceSubtitle1"
                     android:textColor="?attr/colorOnSurface"
                     tools:text="Any type of exercise that gets your heart rate up." />
@@ -66,7 +51,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@{description}"
                     android:textAppearance="?attr/textAppearanceBody1"
                     android:textColor="?android:attr/textColorSecondary"
                     tools:text="Cardio exercise is any exercise that raises your heart rate. A stronger cardio-vascular system means more capillaries delivering more oxygen to cells in your muscles. This enables your cells to burn more fat during both exercise and inactivity. Cardio exercise uses large muscle movement over a sustained period of time keeping your heart rate to at least 50% of its maximum level." />
