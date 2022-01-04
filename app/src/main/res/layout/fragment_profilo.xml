@@ -27,10 +27,18 @@
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="80dp"
+            tools:src="@drawable/icon" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="300dp"
             android:layout_marginHorizontal="20dp">
 
             <Button
@@ -59,6 +67,24 @@
                 android:textSize="10sp"
                 android:textStyle="bold" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/profileUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="400dp"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="?attr/colorOnSurface"
+            tools:text="MarioRossi" />
+
+        <TextView
+            android:id="@+id/profileEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="450dp"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="?attr/colorOnSurface"
+            tools:text="mario.rossi@gmail.com" />
 
         <Button
             android:id="@+id/changePasswordButton"
