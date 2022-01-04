@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         binding.categoryCardio.categoryTitle.setText("Cardio")
         setCategoryImage(binding.categoryCardio.categoryImage, getString(R.string.cardioImageUrl))
         binding.categoryCardio.categoryOverview.setText(getString(R.string.cardioTopDescription))
-        binding.categoryCardio.categoryDescription.setText(getString(R.string.cardioTopDescription))
+        binding.categoryCardio.categoryDescription.setText(getString(R.string.cardioBottomDescription))
 
         binding.categoryLegs.categoryTitle.setText("Legs")
         setCategoryImage(binding.categoryLegs.categoryImage, getString(R.string.legsImageUrl))
