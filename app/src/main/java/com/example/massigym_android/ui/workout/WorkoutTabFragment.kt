@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.massigym_android.databinding.FragmentWorkoutBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class WorkoutFragment : Fragment() {
+class WorkoutTabFragment : Fragment() {
 
     private lateinit var binding: FragmentWorkoutBinding
 
@@ -28,7 +28,7 @@ class WorkoutFragment : Fragment() {
         val tabLayout = binding.tabBarWorkout
         val viewPager = binding.pager
 
-        viewPager.adapter = WorkoutAdapter(this)
+        viewPager.adapter = WorkoutTabAdapter(this)
 
         // Set the title for each tab
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->

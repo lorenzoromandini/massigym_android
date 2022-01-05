@@ -1,4 +1,4 @@
-package com.example.massigym_android
+package com.example.massigym_android.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.massigym_android.R
 import com.example.massigym_android.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

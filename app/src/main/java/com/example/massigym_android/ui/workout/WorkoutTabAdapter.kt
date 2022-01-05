@@ -7,7 +7,7 @@ const val CARDIO_PAGE_INDEX = 0
 const val LEGS_PAGE_INDEX = 1
 const val ARMS_PAGE_INDEX = 2
 
-class WorkoutAdapter(fragment: Fragment) :
+class WorkoutTabAdapter(fragment: Fragment) :
     FragmentStateAdapter(fragment) {
 
     override fun getItemCount() = tabFragmentsCreator.size

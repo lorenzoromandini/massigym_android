@@ -1,7 +1,6 @@
 package com.example.massigym_android.ui.personale
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Context

@@ -10,6 +10,9 @@
     <color name="deepPurpleAccent">#FF7C4DFF</color>
     <color name="purple">#FF9C27B0</color>
     <color name="amber">#FFFFC107</color>
+    <color name="green">#FF4CAF50</color>
+    <color name="red">#FFF44336</color>
+    <color name="lightBlue">#FF03A9F4</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="errors">#E83048</color>
