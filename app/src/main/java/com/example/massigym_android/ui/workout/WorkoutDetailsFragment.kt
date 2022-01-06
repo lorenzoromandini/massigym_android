@@ -30,6 +30,8 @@ class WorkoutDetailsFragment : Fragment() {
 
     private var checkFav = false
 
+    private var checkL = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
@@ -75,9 +77,26 @@ class WorkoutDetailsFragment : Fragment() {
                         }
                     }
 
+
                     binding.timerButton.setOnClickListener {
                         binding.root.findNavController()
                             .navigate(R.id.from_details_to_timer)
+                    }
+
+
+                    checkLike(workout)
+                    if (checkLike(workout)) {
+                        binding.likeButton.setImageResource(R.drawable.ic_thumb_down)
+                        binding.likeButton.setOnClickListener {
+                            removeLike()
+                            true
+                        }
+                    } else {
+                        binding.likeButton.setImageResource(R.drawable.ic_thumb_up_green)
+                        binding.likeButton.setOnClickListener {
+                            addLike()
+                            true
+                        }
                     }
 
                     checkVideo(workout)
@@ -147,6 +166,33 @@ class WorkoutDetailsFragment : Fragment() {
             .collection("workouts")
             .document(id!!)
             .update("favourites", FieldValue.arrayRemove(auth.email.toString()));
+    }
+
+    private fun checkLike(workout: DocumentSnapshot): Boolean {
+        for (like in workout["likes"] as ArrayList<String>) {
+            if (like == auth.email) {
+                checkL = true;
+            }
+        }
+        return checkL;
+    }
+
+    private fun addLike() {
+        checkL = true;
+
+        FirebaseFirestore.getInstance()
+            .collection("workouts")
+            .document(id!!)
+            .update("likes", FieldValue.arrayUnion(auth.email.toString()));
+    }
+
+    private fun removeLike() {
+        checkL = false;
+
+        FirebaseFirestore.getInstance()
+            .collection("workouts")
+            .document(id!!)
+            .update("likes", FieldValue.arrayRemove(auth.email.toString()));
     }
 
     private fun checkImage(workout: DocumentSnapshot) {
