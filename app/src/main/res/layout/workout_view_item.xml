@@ -6,7 +6,7 @@
 
         <variable
             name="workoutObject"
-            type="com.example.massigym_android.Workout" />
+            type="com.example.massigym_android.model.Workout" />
     </data>
 
     <androidx.cardview.widget.CardView

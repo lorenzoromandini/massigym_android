@@ -6,10 +6,10 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.workout.WorkoutVideoFragment" >
+        tools:context=".ui.workout.WorkoutTimerFragment" >
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_workoutVideo"
+            android:id="@+id/appbar_workoutTimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/indigo"
@@ -18,11 +18,10 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_workoutVideo"
+                android:id="@+id/toolbar_workoutTimer"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_arrow_back"
-                app:title="Inserisci Workout"
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 

@@ -94,10 +94,9 @@ class ProfiloFragment : Fragment() {
         }
 
         binding.changePasswordButton.setOnClickListener {
-            binding.root.findNavController()
-                .navigate(R.id.from_profilo_to_changePassword)
+            val intent = Intent(context, ChangePassword::class.java)
+            startActivity(intent)
         }
-
 
         return binding.root
     }

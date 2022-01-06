@@ -1,20 +1,14 @@
 package com.example.massigym_android
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.ActionMenuItemView
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.massigym_android.databinding.WorkoutViewItemBinding
-import com.example.massigym_android.ui.workout.CardioFragment
-import com.example.massigym_android.ui.workout.WorkoutDetailsFragment
+import com.example.massigym_android.model.Workout
 
 class WorkoutAdapter(private val context: Context, private val workoutList: List<Workout>) :
     RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {

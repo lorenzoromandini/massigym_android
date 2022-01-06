@@ -1,28 +1,23 @@
 package com.example.massigym_android.ui.workout
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.massigym_android.R
-import com.example.massigym_android.databinding.FragmentWorkoutDetailsBinding
+import com.example.massigym_android.databinding.ActivityWorkoutDetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
-class WorkoutDetailsFragment : Fragment() {
+class WorkoutDetails : AppCompatActivity() {
 
-    private lateinit var binding: FragmentWorkoutDetailsBinding
-
-    private lateinit var toolbar: Toolbar
+    private lateinit var binding: ActivityWorkoutDetailsBinding
 
     private var id: String? = null
 
@@ -34,20 +29,15 @@ class WorkoutDetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            id = requireArguments().getString("id")
-            // id = requireArguments().getString("id");
-        }
-    }
+        binding = ActivityWorkoutDetailsBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
+        id = intent.getStringExtra("id")
 
-        binding = FragmentWorkoutDetailsBinding.inflate(inflater, container, false)
+        binding.toolbarWorkoutDetails.setNavigationOnClickListener { onBackPressed() }
 
-        setupToolbarWithNavigation()
+        binding.deleteWorkoutButton.setVisibility(View.GONE)
 
         auth = FirebaseAuth.getInstance().currentUser!!
 
@@ -56,11 +46,15 @@ class WorkoutDetailsFragment : Fragment() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val workout = task.result
+                    binding.toolbarWorkoutDetails.setTitle(workout["name"].toString())
+
                     checkImage(workout)
+
                     binding.workoutDescription.setText(workout["description"].toString())
                     binding.workoutAuthor.setText("- ${workout["userName"].toString()}")
 
                     checkFavourite(workout)
+
                     if (checkFavourite(workout)) {
                         binding.toolbarWorkoutDetails.menu.getItem(0)
                             .setIcon(R.drawable.ic_favourite)
@@ -79,12 +73,16 @@ class WorkoutDetailsFragment : Fragment() {
 
 
                     binding.timerButton.setOnClickListener {
-                        binding.root.findNavController()
-                            .navigate(R.id.from_details_to_timer)
+                        val intent = Intent(this, WorkoutTimer::class.java)
+                        val duration = workout["duration"].toString()
+                        intent.putExtra("duration", duration)
+                        intent.putExtra("name", workout["name"].toString())
+                        startActivity(intent)
                     }
 
 
                     checkLike(workout)
+
                     if (checkLike(workout)) {
                         binding.likeButton.setImageResource(R.drawable.ic_thumb_down)
                         binding.likeButton.setOnClickListener {
@@ -103,43 +101,25 @@ class WorkoutDetailsFragment : Fragment() {
 
                     if (workout["imageUrl"] != "") {
                         binding.workoutDetailsVideo.setOnClickListener {
-                            binding.root.findNavController()
-                                .navigate(R.id.from_details_to_video)
+                            val intent = Intent(this, WorkoutVideo::class.java)
+                            intent.putExtra("videoUrl", workout["videoUrl"].toString())
+                            intent.putExtra("name", workout["name"].toString())
+                            startActivity(intent)
                         }
+                    }
 
-                        if (workout["userMail"] == auth.email || workout["userMail"] == "admin@gmail.com") {
-                            binding.deleteWorkoutButton.setVisibility(View.VISIBLE)
-                            binding.deleteWorkoutButton.setOnClickListener {
+                    if (workout["userMail"] == auth.email || workout["userMail"] == "admin@gmail.com") {
+                        binding.deleteWorkoutButton.setVisibility(View.VISIBLE)
+                        binding.deleteWorkoutButton.setOnClickListener {
 
-                            }
-                        } else {
-                            binding.deleteWorkoutButton.setVisibility(View.GONE)
                         }
+                    } else {
+                        binding.deleteWorkoutButton.setVisibility(View.GONE)
                     }
                 }
             }
-
-
-        return binding.root
     }
 
-
-    private fun setupToolbarWithNavigation() {
-        toolbar = binding.toolbarWorkoutDetails
-        toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
-        }
-    }
-
-    companion object {
-        fun newInstance(id: String?): WorkoutDetailsFragment {
-            val fragment = WorkoutDetailsFragment()
-            val args = Bundle()
-            args.putString("id", id)
-            fragment.arguments = args
-            return fragment
-        }
-    }
 
     private fun checkFavourite(workout: DocumentSnapshot): Boolean {
         for (favourite in workout["favourites"] as ArrayList<String>) {

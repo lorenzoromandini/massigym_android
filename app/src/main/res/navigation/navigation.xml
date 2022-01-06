@@ -26,7 +26,7 @@
         android:id="@+id/workoutDetailsFragment"
         android:name="com.example.massigym_android.ui.workout.WorkoutDetailsFragment"
         android:label="Workout"
-        tools:layout="@layout/fragment_workout_details">
+        tools:layout="@layout/activity_workout_details">
         <action
             android:id="@+id/from_details_to_timer"
             app:destination="@id/workoutTimerFragment" />
@@ -39,13 +39,13 @@
         android:id="@+id/workoutTimerFragment"
         android:name="com.example.massigym_android.ui.workout.WorkoutTimerFragment"
         android:label="Workout"
-        tools:layout="@layout/fragment_workout_timer"></fragment>
+        tools:layout="@layout/activity_workout_timer"></fragment>
 
     <fragment
         android:id="@+id/workoutVideoFragment"
         android:name="com.example.massigym_android.ui.workout.WorkoutVideoFragment"
         android:label="Workout"
-        tools:layout="@layout/fragment_workout_video"></fragment>
+        tools:layout="@layout/activity_workout_video"></fragment>
 
     <fragment
         android:id="@+id/personaleFragment"

@@ -17,6 +17,26 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name=".ui.personale.ChangePassword"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.workout.WorkoutDetails"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.workout.WorkoutTimer"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.workout.WorkoutVideo"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.workout.AddWorkout"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>

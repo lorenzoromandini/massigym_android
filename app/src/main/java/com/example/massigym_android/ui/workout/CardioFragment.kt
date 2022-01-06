@@ -1,5 +1,6 @@
 package com.example.massigym_android.ui.workout
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.massigym_android.R
-import com.example.massigym_android.Workout
+import com.example.massigym_android.model.Workout
 import com.example.massigym_android.WorkoutAdapter
 import com.example.massigym_android.databinding.FragmentCardioBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -38,12 +38,11 @@ class CardioFragment : Fragment() {
         binding.recyclerCardio.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 id = workoutIDList[position]
-                goToWorkoutDetails(id)
-                // goToDetails(id)
+                val intent = Intent(context, WorkoutDetails::class.java)
+                intent.putExtra("id", id)
+                startActivity(intent)
             }
         })
-
-
 
         return binding.root
     }
@@ -66,27 +65,6 @@ class CardioFragment : Fragment() {
                     Toast.LENGTH_SHORT).show()
             }
     }
-
-    private fun goToWorkoutDetails(id: String?) {
-        val fragment: WorkoutDetailsFragment = WorkoutDetailsFragment.newInstance(id)
-        val fragmentManager = requireActivity().supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-        transaction.addToBackStack(null)
-        transaction.replace(R.id.cardio_fragment, fragment).commit()
-    }
-
-    /*
-
-    private fun goToDetails(id: String?) {
-        val newFragment = WorkoutDetailsFragment()
-        val args = Bundle()
-        args.putString("id", id)
-        newFragment.setArguments(args)
-        binding.root.findNavController()
-            .navigate(R.id.from_workout_to_details)
-    }
-
-     */
 
     interface OnItemClickListener {
         fun onItemClicked(position: Int, view: View)

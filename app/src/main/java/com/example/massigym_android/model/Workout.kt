@@ -1,4 +1,4 @@
-package com.example.massigym_android
+package com.example.massigym_android.model
 
 data class Workout(
     var userMail: String?,

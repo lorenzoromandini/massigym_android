@@ -22,7 +22,6 @@
                 android:layout_height="?attr/actionBarSize"
                 app:menu="@menu/menu_set_favourite"
                 app:navigationIcon="@drawable/ic_arrow_back"
-                app:title="Workout details"
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
