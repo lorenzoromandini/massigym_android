@@ -25,6 +25,26 @@
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
+        <VideoView
+            android:id="@+id/workout_videoView"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="300dp"
+            android:layout_marginTop="100dp"/>
+
+        <Button
+            android:id="@+id/downloadVideoButton"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="450dp"
+            android:background="@drawable/button_rounded"
+            android:text="Download Video"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
     </FrameLayout>
 
 </layout>

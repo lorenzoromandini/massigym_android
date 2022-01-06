@@ -17,35 +17,7 @@
         android:name="com.example.massigym_android.ui.workout.WorkoutTabFragment"
         android:label="Workout"
         tools:layout="@layout/fragment_workout">
-        <action
-            android:id="@+id/from_workout_to_details"
-            app:destination="@id/workoutDetailsFragment" />
     </fragment>
-
-    <fragment
-        android:id="@+id/workoutDetailsFragment"
-        android:name="com.example.massigym_android.ui.workout.WorkoutDetailsFragment"
-        android:label="Workout"
-        tools:layout="@layout/activity_workout_details">
-        <action
-            android:id="@+id/from_details_to_timer"
-            app:destination="@id/workoutTimerFragment" />
-        <action
-            android:id="@+id/from_details_to_video"
-            app:destination="@id/workoutVideoFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/workoutTimerFragment"
-        android:name="com.example.massigym_android.ui.workout.WorkoutTimerFragment"
-        android:label="Workout"
-        tools:layout="@layout/activity_workout_timer"></fragment>
-
-    <fragment
-        android:id="@+id/workoutVideoFragment"
-        android:name="com.example.massigym_android.ui.workout.WorkoutVideoFragment"
-        android:label="Workout"
-        tools:layout="@layout/activity_workout_video"></fragment>
 
     <fragment
         android:id="@+id/personaleFragment"
@@ -68,9 +40,6 @@
         android:name="com.example.massigym_android.ui.personale.PersonalWorkoutFragment"
         android:label="I miei Workout"
         tools:layout="@layout/fragment_personal_workout">
-        <action
-            android:id="@+id/from_personalWorkout_to_details"
-            app:destination="@id/workoutDetailsFragment" />
     </fragment>
 
     <fragment
@@ -78,9 +47,6 @@
         android:name="com.example.massigym_android.ui.personale.PreferitiFragment"
         android:label="Personale"
         tools:layout="@layout/fragment_preferiti">
-        <action
-            android:id="@+id/from_preferiti_to_details"
-            app:destination="@id/workoutDetailsFragment" />
     </fragment>
 
     <fragment
@@ -88,14 +54,6 @@
         android:name="com.example.massigym_android.ui.personale.ProfiloFragment"
         android:label="Personale"
         tools:layout="@layout/fragment_profilo">
-        <action
-            android:id="@+id/from_profilo_to_changePassword"
-            app:destination="@id/changePasswordFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/changePasswordFragment"
-        android:name="com.example.massigym_android.ui.personale.ChangePasswordFragment"
-        android:label="Modifica Password"
-        tools:layout="@layout/fragment_profilo"></fragment>
 
 </navigation>
