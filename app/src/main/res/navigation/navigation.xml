@@ -8,7 +8,9 @@
         android:id="@+id/homeFragment"
         android:name="com.example.massigym_android.ui.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home"></fragment>
+        tools:layout="@layout/fragment_home">
+
+    </fragment>
 
     <fragment
         android:id="@+id/workoutFragment"

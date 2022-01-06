@@ -33,6 +33,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="80dp"
+            android:scaleType="centerInside"
             tools:src="@drawable/profile_image_empty" />
 
         <LinearLayout
