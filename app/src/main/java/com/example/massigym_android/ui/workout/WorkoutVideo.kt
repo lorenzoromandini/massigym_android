@@ -37,6 +37,7 @@ class WorkoutVideo : AppCompatActivity() {
 
         binding.toolbarWorkoutVideo.setTitle("$workoutName - Video")
 
+        // video player
         val mediaController = MediaController(this)
         mediaController.setAnchorView(binding.workoutVideoView)
         val uri = Uri.parse(videoUrl)
@@ -45,6 +46,7 @@ class WorkoutVideo : AppCompatActivity() {
         binding.workoutVideoView.requestFocus()
         binding.workoutVideoView.start()
 
+        // download video
         binding.downloadVideoButton.setOnClickListener {
             // handle runtime permission for WRITE_EXTERNAL_STORAGE, if system OS >= Marshmallow
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

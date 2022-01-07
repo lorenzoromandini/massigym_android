@@ -43,6 +43,7 @@ class WorkoutAdapter(private val context: Context, private val workoutList: List
         val workoutName: TextView = itemView.findViewById(R.id.workout_name)
         val workoutImage: ImageView = itemView.findViewById(R.id.workout_image)
         val workoutDuration: TextView = itemView.findViewById(R.id.workout_time)
+
         }
 
 }

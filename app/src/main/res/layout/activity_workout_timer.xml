@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.workout.WorkoutTimerFragment" >
@@ -25,6 +25,38 @@
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
-    </FrameLayout>
+        <include layout="@layout/timer_view" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/playButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="64dp"
+            android:backgroundTint="@color/white"
+            android:tint="@null"
+            android:src="@drawable/ic_play" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/stopButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="64dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_pause"
+            android:tint="@null" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="64dp"
+            android:backgroundTint="@color/white"
+            android:tint="@null"
+            android:src="@drawable/ic_stop" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

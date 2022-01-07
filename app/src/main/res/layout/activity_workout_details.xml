@@ -78,9 +78,9 @@
         <ImageView
             android:id="@+id/workoutDetails_video"
             android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_height="140dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="450dp"
+            android:layout_marginTop="480dp"
             android:scaleType="centerInside"
             tools:src="@drawable/workout_video_empty" />
 

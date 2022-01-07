@@ -16,6 +16,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/black"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_add"

@@ -3,6 +3,7 @@ package com.example.massigym_android.ui.workout
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
@@ -60,6 +61,7 @@ class WorkoutDetails : AppCompatActivity() {
                             .setIcon(R.drawable.ic_favourite)
                         binding.toolbarWorkoutDetails.menu.getItem(0).setOnMenuItemClickListener {
                             removeFavourite()
+                            onBackPressed()
                             true
                         }
                     } else {
@@ -67,6 +69,7 @@ class WorkoutDetails : AppCompatActivity() {
                             .setIcon(R.drawable.ic_empty_favourite)
                         binding.toolbarWorkoutDetails.menu.getItem(0).setOnMenuItemClickListener {
                             addFavourite()
+                            onBackPressed()
                             true
                         }
                     }
@@ -87,12 +90,14 @@ class WorkoutDetails : AppCompatActivity() {
                         binding.likeButton.setImageResource(R.drawable.ic_thumb_down)
                         binding.likeButton.setOnClickListener {
                             removeLike()
+                            onBackPressed()
                             true
                         }
                     } else {
                         binding.likeButton.setImageResource(R.drawable.ic_thumb_up_green)
                         binding.likeButton.setOnClickListener {
                             addLike()
+                            onBackPressed()
                             true
                         }
                     }
@@ -136,7 +141,9 @@ class WorkoutDetails : AppCompatActivity() {
         FirebaseFirestore.getInstance()
             .collection("workouts")
             .document(id!!)
-            .update("favourites", FieldValue.arrayUnion(auth.email.toString()));
+            .update("favourites", FieldValue.arrayUnion(auth.email.toString()))
+
+        Toast.makeText(this, "Aggiunto ai Preferiti", Toast.LENGTH_SHORT).show()
     }
 
     private fun removeFavourite() {
@@ -146,6 +153,8 @@ class WorkoutDetails : AppCompatActivity() {
             .collection("workouts")
             .document(id!!)
             .update("favourites", FieldValue.arrayRemove(auth.email.toString()));
+
+        Toast.makeText(this, "Rimosso dai Preferiti", Toast.LENGTH_SHORT).show()
     }
 
     private fun checkLike(workout: DocumentSnapshot): Boolean {
@@ -163,7 +172,9 @@ class WorkoutDetails : AppCompatActivity() {
         FirebaseFirestore.getInstance()
             .collection("workouts")
             .document(id!!)
-            .update("likes", FieldValue.arrayUnion(auth.email.toString()));
+            .update("likes", FieldValue.arrayUnion(auth.email.toString()))
+
+        Toast.makeText(this, "Mi Piace aggiunto", Toast.LENGTH_SHORT).show()
     }
 
     private fun removeLike() {
@@ -172,7 +183,9 @@ class WorkoutDetails : AppCompatActivity() {
         FirebaseFirestore.getInstance()
             .collection("workouts")
             .document(id!!)
-            .update("likes", FieldValue.arrayRemove(auth.email.toString()));
+            .update("likes", FieldValue.arrayRemove(auth.email.toString()))
+
+        Toast.makeText(this, "Mi Piace rimosso", Toast.LENGTH_SHORT).show()
     }
 
     private fun checkImage(workout: DocumentSnapshot) {
