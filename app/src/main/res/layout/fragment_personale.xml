@@ -25,39 +25,42 @@
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/personalWorkoutButton"
+            app:cornerRadius="125dp"
             android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="200dp"
-            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/purple"
             android:text="I miei Workout"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/preferitiButton"
+            app:cornerRadius="125dp"
             android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="300dp"
-            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/red"
             android:text="Preferiti"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/profiloButton"
+            app:cornerRadius="125dp"
             android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="400dp"
-            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/deepPurple"
             android:text="Profilo"
             android:textAllCaps="false"
             android:textColor="@color/white"

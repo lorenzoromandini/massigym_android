@@ -49,11 +49,11 @@ class ResetPassword : AppCompatActivity() {
         auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this,
-                    "Controlla la tua mail per resettare la password",
+                    "Richiesta inviata",
                     Toast.LENGTH_LONG).show()
                 onBackPressed()
             } else {
-                Toast.makeText(this, "Riprova, qualcosa è andato storto", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Qualcosa è andato storto...", Toast.LENGTH_LONG).show()
             }
         }
     }
