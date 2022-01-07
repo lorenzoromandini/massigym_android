@@ -46,7 +46,8 @@
                     android:gravity="center"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold|normal" />
+                    android:textStyle="bold|normal"
+                    tools:text="Name"/>
 
                 <TextView
                     android:id="@+id/workout_time"
@@ -57,7 +58,8 @@
                     android:gravity="center"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="15sp"
-                    android:textStyle="bold|normal" />
+                    android:textStyle="bold|normal"
+                    tools:text="Durata" />
 
 
             </LinearLayout>

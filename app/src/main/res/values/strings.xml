@@ -12,5 +12,11 @@
     <string name="armsTopDescription">Per un allenamento completo, è meglio praticare una varietà di movimenti per ogni parte del corpo.</string>
     <string name="armsBottomDescription">Se vuoi allenare le braccia, non puoi semplicemente allenare le braccia. Per avere progressi con gli esercizi delle braccia, hai bisogno di sviluppare forza nelle altre parti del corpo, altrimenti alcuni esercizi diventano troppo faticosi.</string>
     <string name="armsImageUrl">https://firebasestorage.googleapis.com/v0/b/massigym-80757.appspot.com/o/arms%2Fcat_arms.png?alt=media&amp;token=2a5dbf6a-4d7c-4ce0-b94d-e149c486c688</string>
+    <string name="title_activity_reset_password">ResetPassword</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 
 </resources>

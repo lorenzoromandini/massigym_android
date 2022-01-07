@@ -82,8 +82,8 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="35dp"
-        android:background="@drawable/button_rounded"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/deepPurple"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
-        android:padding="15dp">
+        android:padding="20dp">
 
         <TextView
             android:id="@+id/notYetRegister"
@@ -109,8 +109,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Registrati"
-            android:textColor="@color/black"
+            android:textColor="@color/deepPurpleAccent"
             android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+    <TextView
+        android:id="@+id/goToResetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password dimenticata?"
+        android:textColor="@color/deepPurpleAccent"
+        android:textStyle="bold" />
 
     </LinearLayout>
 

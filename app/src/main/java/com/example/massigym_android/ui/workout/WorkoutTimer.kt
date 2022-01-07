@@ -39,27 +39,27 @@ class WorkoutTimer : AppCompatActivity() {
         binding.toolbarWorkoutTimer.setTitle("$workoutName - Timer")
 
         binding.playButton.setOnClickListener {
-            startTimer()
+      //      startTimer()
             timerState = TimerState.running
-            updateButtons()
+        //    updateButtons()
         }
 
         binding.stopButton.setOnClickListener {
             timer.cancel()
             timerState = TimerState.paused
-            updateButtons()
+           // updateButtons()
         }
 
         binding.resetButton.setOnClickListener {
             timer.cancel()
-            onTimerfinished()
+          //  onTimerfinished()
         }
     }
 
     override fun onResume() {
         super.onResume()
 
-        initTimer()
+     //   initTimer()
     }
 
     override fun onPause() {

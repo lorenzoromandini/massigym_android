@@ -129,8 +129,8 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/button_rounded"/>
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/deepPurple" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Torna al Login"
-            android:textColor="@color/black"
+            android:textColor="@color/deepPurpleAccent"
             android:textStyle="bold" />
 
     </LinearLayout>
