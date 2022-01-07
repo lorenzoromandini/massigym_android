@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="450dp"
-            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/deepPurple"
             android:text="Download Video"
             android:textAllCaps="false"
             android:textColor="@color/white"
