@@ -3,6 +3,7 @@ package com.example.massigym_android.ui.personale
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.massigym_android.databinding.ActivityChangePasswordBinding
@@ -16,9 +17,6 @@ class ChangePassword : AppCompatActivity() {
 
     private lateinit var binding: ActivityChangePasswordBinding
 
-    private lateinit var passwordInput: TextInputEditText
-    private lateinit var confermaPasswordInput: TextInputEditText
-
     private lateinit var user: FirebaseUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,48 +27,45 @@ class ChangePassword : AppCompatActivity() {
 
         binding.toolbarChangePassword.setNavigationOnClickListener { onBackPressed() }
 
-        passwordInput = binding.changeNewPassword
-        confermaPasswordInput = binding.changeConfirmPassword
-
         user = FirebaseAuth.getInstance().currentUser!!
 
         binding.changePasswordButton.setOnClickListener {
-            try {
-                val password = passwordInput.text.toString().trim()
-
-                changePassword(password)
-
-            } catch (e: Exception) {
-                if (TextUtils.isEmpty(passwordInput.text.toString().trim()) ||
-                    TextUtils.isEmpty(confermaPasswordInput.text.toString().trim())
-                ) {
-                    if (TextUtils.isEmpty(passwordInput.text.toString().trim())) {
-                        passwordInput.error = "Password richiesta"
-                    }
-                    if (TextUtils.isEmpty(confermaPasswordInput.text.toString().trim())) {
-                        confermaPasswordInput.error = "Conferma Password richiesta"
-                    }
-                    return@setOnClickListener
-                } else if (passwordInput.text.toString()
-                        .trim() != confermaPasswordInput.text.toString().trim()
-                ) {
-                    confermaPasswordInput.error =
-                        "Password e Conferma Password non coincidono"
-                    return@setOnClickListener
-                }
-            }
+            changePassword()
         }
 
     }
 
-    private fun changePassword(password: String) {
+    private fun changePassword() {
+
+        val password = binding.changeNewPassword.text.toString().trim()
+        val passwordInput = binding.passwordTextInputLayout
+        val confermaPassword = binding.changeConfirmPassword.text.toString().trim()
+        val confermaPasswordInput = binding.confermaPasswordTextInputLayout
+
+        if (password.isEmpty() || password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
+        ) {
+            if (password.isEmpty()) {
+                passwordInput.error = "Password richiesta"
+            }
+            if (password.length < 6) {
+                passwordInput.error = "Immettere una Password valida. (Min. 6 caratteri)"
+            }
+            if (confermaPassword.isEmpty()) {
+                confermaPasswordInput.error = "Conferma Password richiesta"
+            }
+            if (password != confermaPassword) {
+                confermaPasswordInput.error = "Le Password non coincidono"
+            }
+            return
+        }
+
         user.updatePassword(password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(
                         this,
                         "Modifica Password effettuata",
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_LONG
                     ).show()
                     FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this, LoginActivity::class.java))

@@ -3,11 +3,9 @@ package com.example.massigym_android.ui.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
+import android.util.Patterns
 import android.widget.Toast
-import com.example.massigym_android.ui.common.BottomNavBar
 import com.example.massigym_android.databinding.ActivityRegistrationBinding
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.HashMap
@@ -16,13 +14,6 @@ class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrationBinding
 
-    private lateinit var usernameInput: TextInputEditText
-    private lateinit var emailInput: TextInputEditText
-    private lateinit var passwordInput: TextInputEditText
-    private lateinit var confermaPasswordInput: TextInputEditText
-
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistrationBinding.inflate(layoutInflater)
@@ -30,92 +21,73 @@ class RegistrationActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.goToLogin.setOnClickListener {
-            val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        usernameInput = binding.registrationUsername
-        emailInput = binding.registrationEmail
-        passwordInput = binding.registrationPassword
-        confermaPasswordInput = binding.registrationConfirmPassword
-
-        auth = FirebaseAuth.getInstance()
-
         binding.registrationButton.setOnClickListener {
-            try {
-                val username = usernameInput.text.toString().trim()
-                val email = emailInput.text.toString().trim()
-                val password = passwordInput.text.toString().trim()
-
-                signUp(email, password, username)
-
-            } catch (e: Exception) {
-                //nel caso in cui l'utente clicchi sul bottone registra senza inserire uno dei campi richiesti
-                /*
-            if (TextUtils.isEmpty(usernameInput.text.toString().trim()) && TextUtils.isEmpty(
-                    emailInput.text.toString().trim()) && TextUtils.isEmpty(passwordInput.text.toString().trim())) {
-                usernameInput.error = "Per favore inserisci il tuo nome"
-                emailInput.error = "Per favore inserisci la tua mail"
-                passwordInput.error =
-                    "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
-                return@setOnClickListener
-            } else if (TextUtils.isEmpty(usernameInput.text.toString().trim())) {
-                usernameInput.error = "Per favore inserisci il tuo nome"
-                return@setOnClickListener
-            } else if (TextUtils.isEmpty(emailInput.text.toString().trim())) {
-                emailInput.error = "Per favore inserisci la tua mail"
-                return@setOnClickListener
-            } else if (TextUtils.isEmpty(passwordInput.text.toString().trim())) {
-                passwordInput.error =
-                    "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
-                return@setOnClickListener
-            }
-            */
-                if (TextUtils.isEmpty(usernameInput.text.toString().trim()) || TextUtils.isEmpty(
-                        emailInput.text.toString()
-                            .trim()) || TextUtils.isEmpty(passwordInput.text.toString()
-                        .trim()) || TextUtils.isEmpty(confermaPasswordInput.text.toString().trim())
-                ) {
-                    if (TextUtils.isEmpty(usernameInput.text.toString().trim())) {
-                        usernameInput.error = "Per favore inserisci il tuo nome"
-                    }
-                    if (TextUtils.isEmpty(emailInput.text.toString().trim())) {
-                        emailInput.error = "Per favore inserisci la tua mail"
-                    }
-                    if (TextUtils.isEmpty(passwordInput.text.toString().trim())) {
-                        passwordInput.error =
-                            "Per favore inserisci una password composta da almeno 6 caratteri o numeri"
-                    }
-                    if (TextUtils.isEmpty(confermaPasswordInput.text.toString().trim())) {
-                        confermaPasswordInput.error =
-                            "Per favore inserisci la conferma password"
-                    }
-                    return@setOnClickListener
-                } else if (passwordInput.text.toString()
-                        .trim() != confermaPasswordInput.text.toString().trim()
-                ) {
-                    confermaPasswordInput.error =
-                        "Password e Conferma Password non coincidono"
-                    return@setOnClickListener
-                }
-            }
+            signUp()
         }
+
     }
 
+    private fun signUp() {
 
-    private fun signUp(email: String, password: String, username: String) {
-        auth.createUserWithEmailAndPassword(email, password)
+        val username = binding.registrationUsername.text.toString().trim()
+        val usernameInput = binding.usernameTextInputLayout
+        val email = binding.registrationEmail.text.toString().trim()
+        val emailInput = binding.emailTextInputLayout
+        val password = binding.registrationPassword.text.toString().trim()
+        val passwordInput = binding.passwordTextInputLayout
+        val confermaPassword = binding.registrationConfirmPassword.text.toString().trim()
+        val confermaPasswordInput = binding.confermaPasswordTextInputLayout
+
+        if (username.isEmpty() || username.length < 5 || email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(
+                email)
+                .matches() || password.isEmpty() || password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
+        ) {
+            if (username.isEmpty()) {
+                usernameInput.error = "Username richiesto"
+            }
+            if (username.length < 5) {
+                usernameInput.error = "Immettere uno Username valido. (Min. 5 caratteri)"
+            }
+            if (email.isEmpty()) {
+                emailInput.error = "Email richiesta"
+            }
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailInput.error = "Inserisci un formato email valido"
+            }
+            if (password.isEmpty()) {
+                passwordInput.error = "Password richiesta"
+            }
+            if (password.length < 6) {
+                passwordInput.error = "Immettere una Password valida. (Min. 6 caratteri)"
+            }
+            if (confermaPassword.isEmpty()) {
+                confermaPasswordInput.error = "Conferma Password richiesta"
+            }
+            if (password != confermaPassword) {
+                confermaPasswordInput.error = "Le Password non coincidono"
+            }
+            return
+        }
+
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     postToFirestore(username)
-                    val intent = Intent(this, BottomNavBar::class.java)
+                    FirebaseAuth.getInstance().signOut()
+                    val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
+                    Toast.makeText(this, "Registrazione effettuata", Toast.LENGTH_LONG)
+                        .show()
                     finish()
                 } else {
                     task.exception!!.printStackTrace()
                     Toast.makeText(
-                        this@RegistrationActivity,
+                        this,
                         "Registration failed",
                         Toast.LENGTH_LONG
                     ).show()
@@ -132,6 +104,5 @@ class RegistrationActivity : AppCompatActivity() {
         FirebaseFirestore.getInstance()
             .collection("users").document(user!!.email!!).set(userMap)
     }
-
 
 }

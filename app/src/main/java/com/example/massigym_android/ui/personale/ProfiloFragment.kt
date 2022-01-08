@@ -139,7 +139,8 @@ class ProfiloFragment : Fragment() {
             val downloadURLTask = storageRef.child("profileImage/${auth.email}").downloadUrl
             downloadURLTask.addOnSuccessListener {
                 Log.e(TAG, "Image Path: $it")
-                FirebaseFirestore.getInstance().collection("users").document(auth.email!!).update("imageUrl", it.toString())
+                FirebaseFirestore.getInstance().collection("users").document(auth.email!!)
+                    .update("imageUrl", it.toString())
                 progressDialog.dismiss()
             }.addOnFailureListener {
                 progressDialog.dismiss()

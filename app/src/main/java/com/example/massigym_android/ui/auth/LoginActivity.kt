@@ -3,7 +3,6 @@ package com.example.massigym_android.ui.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
 import com.example.massigym_android.ui.common.BottomNavBar
@@ -27,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.goToRegister.setOnClickListener {
-            val intent = Intent(this@LoginActivity, RegistrationActivity::class.java)
+            val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -41,24 +40,26 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
 
         val email = binding.loginEmail.text.toString().trim()
-        val emailLayout = binding.emailTextInputLayout
+        val emailInput = binding.emailTextInputLayout
         val password = binding.loginPassword.text.toString().trim()
-        val passwordLayout = binding.passwordTextInputLayout
+        val passwordInput = binding.passwordTextInputLayout
 
-        if (TextUtils.isEmpty(email)) {
-            emailLayout.error = "Email richiesta"
-            return
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailLayout.error = "Immettere una Email valida"
-            return
-        }
-        if (TextUtils.isEmpty(password)) {
-            passwordLayout.error = "Password richiesta"
-            return
-        }
-        if (password.length < 6) {
-            passwordLayout.error = "Immettere una Password valida. (Min. 6 caratteri)"
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email)
+                .matches() || password.isEmpty() || password.length < 6
+        ) {
+
+            if (email.isEmpty()) {
+                emailInput.error = "Email richiesta"
+            }
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailInput.error = "Inserisci un formato email valido"
+            }
+            if (password.isEmpty()) {
+                passwordInput.error = "Password richiesta"
+            }
+            if (password.length < 6) {
+                passwordInput.error = "Immettere una Password valida. (Min. 6 caratteri)"
+            }
             return
         }
 
@@ -68,7 +69,8 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val intent = Intent(this, BottomNavBar::class.java)
                     startActivity(intent)
-                    Toast.makeText(this@LoginActivity, "Login effettuato", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Login effettuato", Toast.LENGTH_SHORT)
+                        .show()
                     finish()
                 } else {
                     Toast.makeText(baseContext, "Authentication failed", Toast.LENGTH_LONG).show()

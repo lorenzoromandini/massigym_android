@@ -15,8 +15,6 @@ class ResetPassword : AppCompatActivity() {
 
     private lateinit var emailInput: TextInputEditText
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResetPasswordBinding.inflate(layoutInflater)
@@ -25,10 +23,6 @@ class ResetPassword : AppCompatActivity() {
 
         binding.toolbarResetPassword.setNavigationOnClickListener { onBackPressed() }
 
-        emailInput = binding.resetPasswordEmail
-
-        auth = FirebaseAuth.getInstance()
-
         binding.resetPasswordButton.setOnClickListener {
             resetPassword()
         }
@@ -36,6 +30,7 @@ class ResetPassword : AppCompatActivity() {
 
     private fun resetPassword() {
         val email = emailInput.text.toString().trim()
+        val emailInput = binding.resetPasswordEmail
 
         if (email.isEmpty()) {
             emailInput.error = "Email richiesta"
@@ -46,7 +41,7 @@ class ResetPassword : AppCompatActivity() {
             return
         }
 
-        auth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this,
                     "Richiesta inviata",
