@@ -44,6 +44,11 @@ class CardioFragment : Fragment() {
             }
         })
 
+        binding.fabCardio.setOnClickListener {
+            val intent = Intent(context, AddWorkout::class.java)
+            startActivity(intent)
+        }
+
         return binding.root
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -26,86 +26,100 @@
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <Button
-            android:id="@+id/selectImageButton"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:text="Seleziona Immagine"
-            android:textAllCaps="false"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
-            android:background="@drawable/button_rounded"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="wrap_content"
-            android:layout_height="68dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="250dp"
-            app:errorEnabled="true"
-            app:errorTextColor="@color/errors"
-            app:startIconDrawable="@drawable/ic_user">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/workoutName"
-                android:layout_width="350dp"
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:hint="Nome"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="wrap_content"
-            android:layout_height="68dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="400dp"
-            app:errorEnabled="true"
-            app:errorTextColor="@color/errors"
-            app:startIconDrawable="@drawable/ic_email">
+                <Button
+                    android:id="@+id/selectImageButton"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="100dp"
+                    android:backgroundTint="@color/deepPurple"
+                    android:text="Seleziona Immagine"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/workout_description"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:hint="Descrizione"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="68dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="250dp"
+                    app:errorEnabled="true"
+                    app:errorTextColor="@color/errors"
+                    app:startIconDrawable="@drawable/ic_name_add">
 
-        <Button
-            android:id="@+id/selectVideoButton"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:text="Seleziona Video"
-            android:textAllCaps="false"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="600dp"
-            android:background="@drawable/button_rounded"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/workoutName"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="Nome"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/addWorkoutButton"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:text="Inserisci Workout"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="750dp"
-                android:background="@drawable/button_rounded"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="68dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="400dp"
+                    app:errorEnabled="true"
+                    app:errorTextColor="@color/errors"
+                    app:startIconDrawable="@drawable/ic_description">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/workout_description"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="Descrizione"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/selectVideoButton"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="600dp"
+                    android:backgroundTint="@color/deepPurple"
+                    android:text="Seleziona Video"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/addWorkoutButton"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="750dp"
+                    android:layout_marginBottom="60dp"
+                    android:backgroundTint="@color/red"
+                    android:text="Inserisci Workout"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        </ScrollView>
 
     </FrameLayout>
 

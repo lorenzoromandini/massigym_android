@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/legs_fragment"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         tools:context=".ui.workout.ArmsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_arms"
-            tools:listitem="@layout/workout_view_item"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/workout_view_item" />
 
     </androidx.core.widget.NestedScrollView>
 
-</layout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_arms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="60dp"
+        app:useCompatPadding="true"
+        android:backgroundTint="@color/deepPurple"
+        android:elevation="100dp"
+        android:src="@drawable/ic_add"
+        app:tint="@color/white"
+        app:maxImageSize="30dp"
+        android:scaleType="center" />
+
+</RelativeLayout>

@@ -44,6 +44,11 @@ class ArmsFragment : Fragment() {
             }
         })
 
+        binding.fabArms.setOnClickListener {
+            val intent = Intent(context, AddWorkout::class.java)
+            startActivity(intent)
+        }
+
         return binding.root
     }
 

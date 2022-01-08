@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.massigym_android.model.Workout
 
-class WorkoutAdapter(private val context: Context, private val workoutList: List<Workout>) :
+class WorkoutAdapter(private var context: Context, private var workoutList: List<Workout>) :
     RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
@@ -21,7 +21,7 @@ class WorkoutAdapter(private val context: Context, private val workoutList: List
     }
 
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
-        val workout = workoutList[position]
+        var workout = workoutList[position]
         holder.workoutName.text = workout.name
         holder.workoutDuration.text = workout.duration.toString()
 
@@ -40,9 +40,9 @@ class WorkoutAdapter(private val context: Context, private val workoutList: List
 
     class WorkoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val workoutName: TextView = itemView.findViewById(R.id.workout_name)
-        val workoutImage: ImageView = itemView.findViewById(R.id.workout_image)
-        val workoutDuration: TextView = itemView.findViewById(R.id.workout_time)
+        var workoutName: TextView = itemView.findViewById(R.id.workout_name)
+        var workoutImage: ImageView = itemView.findViewById(R.id.workout_image)
+        var workoutDuration: TextView = itemView.findViewById(R.id.workout_time)
 
         }
 
