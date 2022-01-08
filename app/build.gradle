@@ -56,7 +56,6 @@ dependencies {
     implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
     implementation 'com.github.dhaval2404:imagepicker:1.7.4'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
-    implementation 'androidx.wear:wear:1.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

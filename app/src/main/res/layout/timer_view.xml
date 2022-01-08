@@ -20,6 +20,7 @@
 
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar
         android:id="@+id/progressBar"
+        style="@style/Widget.MaterialProgressBar.ProgressBar"
         android:minWidth="300dp"
         android:minHeight="300dp"
         android:layout_width="wrap_content"

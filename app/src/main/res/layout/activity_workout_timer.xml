@@ -25,7 +25,8 @@
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <include layout="@layout/timer_view" />
+        <include layout="@layout/timer_view"
+            android:id="@+id/timer_view"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/playButton"
