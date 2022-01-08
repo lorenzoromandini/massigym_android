@@ -116,7 +116,8 @@ class WorkoutDetails : AppCompatActivity() {
                     if (workout["userMail"] == auth.email || workout["userMail"] == "admin@gmail.com") {
                         binding.deleteWorkoutButton.setVisibility(View.VISIBLE)
                         binding.deleteWorkoutButton.setOnClickListener {
-
+                            deleteWorkout(workout)
+                            onBackPressed()
                         }
                     } else {
                         binding.deleteWorkoutButton.setVisibility(View.GONE)
@@ -208,6 +209,15 @@ class WorkoutDetails : AppCompatActivity() {
         } else {
             binding.workoutDetailsVideo.setImageResource(R.drawable.workout_video_exists)
         }
+    }
+
+    private fun deleteWorkout(workout: DocumentSnapshot) {
+        FirebaseFirestore.getInstance()
+            .collection("workouts")
+            .document(id!!)
+            .delete()
+
+        Toast.makeText(this, "Workout eliminato", Toast.LENGTH_LONG).show()
     }
 
 

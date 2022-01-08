@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.massigym_android.model.Workout
-import com.example.massigym_android.WorkoutAdapter
 import com.example.massigym_android.databinding.FragmentLegsBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -59,7 +58,7 @@ class LegsFragment : Fragment() {
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     val workout = documents.toObjects(Workout::class.java)
-                    binding.recyclerLegs.adapter = WorkoutAdapter(requireContext(), workout)
+                    binding.recyclerLegs.adapter = CLAWorkoutAdapter(requireContext(), workout)
                     val id = document.id
                     workoutIDList.add(id)
                 }
