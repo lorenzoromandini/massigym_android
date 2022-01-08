@@ -22,17 +22,17 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.categoryCardio.categoryTitle.setText("Cardio")
+        binding.categoryCardio.categoryTitle.setText(getString(R.string.cardioCategory))
         setCategoryImage(binding.categoryCardio.categoryImage, getString(R.string.cardioImageUrl))
         binding.categoryCardio.categoryOverview.setText(getString(R.string.cardioTopDescription))
         binding.categoryCardio.categoryDescription.setText(getString(R.string.cardioBottomDescription))
 
-        binding.categoryLegs.categoryTitle.setText("Legs")
+        binding.categoryLegs.categoryTitle.setText(getString(R.string.legsCategory))
         setCategoryImage(binding.categoryLegs.categoryImage, getString(R.string.legsImageUrl))
         binding.categoryLegs.categoryOverview.setText(getString(R.string.legsTopDescription))
         binding.categoryLegs.categoryDescription.setText(getString(R.string.legsBottomDescription))
 
-        binding.categoryArms.categoryTitle.setText("Arms")
+        binding.categoryArms.categoryTitle.setText(getString(R.string.armsCategory))
         setCategoryImage(binding.categoryArms.categoryImage, getString(R.string.armsImageUrl))
         binding.categoryArms.categoryOverview.setText(getString(R.string.armsTopDescription))
         binding.categoryArms.categoryDescription.setText(getString(R.string.armsBottomDescription))

@@ -12,6 +12,7 @@ import android.app.DownloadManager
 import android.content.Context
 import android.os.Environment
 import android.widget.Toast
+import com.example.massigym_android.R
 
 
 class WorkoutVideo : AppCompatActivity() {
@@ -71,7 +72,7 @@ class WorkoutVideo : AppCompatActivity() {
         val request = DownloadManager.Request(Uri.parse(videoUrl))
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
         request.setTitle("${workoutName}.mp4")
-        request.setDescription("The file is downloading...")
+        request.setDescription(getString(R.string.downloadPending))
         request.allowScanningByMediaScanner()
         request.setNotificationVisibility((DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED))
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "${workoutName}.mp4")
@@ -89,7 +90,7 @@ class WorkoutVideo : AppCompatActivity() {
                     startDownloading()
                 } else {
                     // permission from popup was denied, show error message
-                    Toast.makeText(this, "Permission denied!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.grantPermissions), Toast.LENGTH_LONG).show()
                 }
             }
         }

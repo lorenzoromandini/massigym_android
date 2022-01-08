@@ -30,7 +30,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:overScrollMode="never"
-                app:tabMode="fixed" />
+                app:tabIndicatorColor="@color/purple"
+                app:tabIndicatorHeight="5dp"
+                app:tabMode="fixed"
+                android:background="@color/indigo"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="#bcbcbc"
+                tools:text="Pacca"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/pager"

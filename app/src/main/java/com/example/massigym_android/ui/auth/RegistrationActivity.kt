@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import com.example.massigym_android.R
 import com.example.massigym_android.databinding.ActivityRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -48,28 +49,28 @@ class RegistrationActivity : AppCompatActivity() {
                 .matches() || password.isEmpty() || password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
         ) {
             if (username.isEmpty()) {
-                usernameInput.error = "Username richiesto"
+                usernameInput.error = getString(R.string.usernameRequired)
             }
             if (username.length < 5) {
-                usernameInput.error = "Immettere uno Username valido. (Min. 5 caratteri)"
+                usernameInput.error = getString(R.string.usernameInvalid)
             }
             if (email.isEmpty()) {
-                emailInput.error = "Email richiesta"
+                emailInput.error = getString(R.string.emailRequired)
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                emailInput.error = "Inserisci un formato email valido"
+                emailInput.error = getString(R.string.emailInvalid)
             }
             if (password.isEmpty()) {
-                passwordInput.error = "Password richiesta"
+                passwordInput.error = getString(R.string.passwordRequired)
             }
             if (password.length < 6) {
-                passwordInput.error = "Immettere una Password valida. (Min. 6 caratteri)"
+                passwordInput.error = getString(R.string.passwordInvalid)
             }
             if (confermaPassword.isEmpty()) {
-                confermaPasswordInput.error = "Conferma Password richiesta"
+                confermaPasswordInput.error = getString(R.string.passwordConfirmRequired)
             }
             if (password != confermaPassword) {
-                confermaPasswordInput.error = "Le Password non coincidono"
+                confermaPasswordInput.error = getString(R.string.passwordNotEquals)
             }
             return
         }
@@ -81,14 +82,14 @@ class RegistrationActivity : AppCompatActivity() {
                     FirebaseAuth.getInstance().signOut()
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
-                    Toast.makeText(this, "Registrazione effettuata", Toast.LENGTH_LONG)
+                    Toast.makeText(this, getString(R.string.registrationSuccess), Toast.LENGTH_LONG)
                         .show()
                     finish()
                 } else {
                     task.exception!!.printStackTrace()
                     Toast.makeText(
                         this,
-                        "Registration failed",
+                        getString(R.string.somethingWentWrong),
                         Toast.LENGTH_LONG
                     ).show()
                 }

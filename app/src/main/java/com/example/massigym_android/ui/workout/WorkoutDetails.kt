@@ -144,7 +144,7 @@ class WorkoutDetails : AppCompatActivity() {
             .document(id!!)
             .update("favourites", FieldValue.arrayUnion(auth.email.toString()))
 
-        Toast.makeText(this, "Aggiunto ai Preferiti", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.addToFavourites), Toast.LENGTH_SHORT).show()
     }
 
     private fun removeFavourite() {
@@ -155,7 +155,7 @@ class WorkoutDetails : AppCompatActivity() {
             .document(id!!)
             .update("favourites", FieldValue.arrayRemove(auth.email.toString()));
 
-        Toast.makeText(this, "Rimosso dai Preferiti", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.removeFromFavourites), Toast.LENGTH_SHORT).show()
     }
 
     private fun checkLike(workout: DocumentSnapshot): Boolean {
@@ -175,7 +175,7 @@ class WorkoutDetails : AppCompatActivity() {
             .document(id!!)
             .update("likes", FieldValue.arrayUnion(auth.email.toString()))
 
-        Toast.makeText(this, "Mi Piace aggiunto", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.addLike), Toast.LENGTH_SHORT).show()
     }
 
     private fun removeLike() {
@@ -186,7 +186,7 @@ class WorkoutDetails : AppCompatActivity() {
             .document(id!!)
             .update("likes", FieldValue.arrayRemove(auth.email.toString()))
 
-        Toast.makeText(this, "Mi Piace rimosso", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.removeLike), Toast.LENGTH_SHORT).show()
     }
 
     private fun checkImage(workout: DocumentSnapshot) {
@@ -217,7 +217,7 @@ class WorkoutDetails : AppCompatActivity() {
             .document(id!!)
             .delete()
 
-        Toast.makeText(this, "Workout eliminato", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.deleteWorkout), Toast.LENGTH_LONG).show()
     }
 
 

@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.massigym_android.R
 import com.example.massigym_android.databinding.ActivityChangePasswordBinding
 import com.example.massigym_android.ui.auth.LoginActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -45,16 +46,16 @@ class ChangePassword : AppCompatActivity() {
         if (password.isEmpty() || password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
         ) {
             if (password.isEmpty()) {
-                passwordInput.error = "Password richiesta"
+                passwordInput.error = getString(R.string.passwordRequired)
             }
             if (password.length < 6) {
-                passwordInput.error = "Immettere una Password valida. (Min. 6 caratteri)"
+                passwordInput.error = getString(R.string.passwordInvalid)
             }
             if (confermaPassword.isEmpty()) {
-                confermaPasswordInput.error = "Conferma Password richiesta"
+                confermaPasswordInput.error = getString(R.string.passwordConfirmRequired)
             }
             if (password != confermaPassword) {
-                confermaPasswordInput.error = "Le Password non coincidono"
+                confermaPasswordInput.error = getString(R.string.passwordNotEquals)
             }
             return
         }
@@ -64,7 +65,7 @@ class ChangePassword : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(
                         this,
-                        "Modifica Password effettuata",
+                        getString(R.string.passwordChangedSuccessfully),
                         Toast.LENGTH_LONG
                     ).show()
                     FirebaseAuth.getInstance().signOut()
@@ -73,7 +74,7 @@ class ChangePassword : AppCompatActivity() {
                     task.exception!!.printStackTrace()
                     Toast.makeText(
                         this,
-                        "La Password non può essere modificata",
+                        getString(R.string.somethingWentWrong),
                         Toast.LENGTH_LONG
                     ).show()
                 }

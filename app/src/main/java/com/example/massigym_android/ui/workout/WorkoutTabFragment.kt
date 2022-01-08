@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.massigym_android.R
 import com.example.massigym_android.databinding.FragmentWorkoutBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -38,9 +39,9 @@ class WorkoutTabFragment : Fragment() {
 
     private fun getTabTitle(position: Int): String? {
         return when (position) {
-            CARDIO_PAGE_INDEX -> "Cardio"
-            LEGS_PAGE_INDEX -> "Legs"
-            ARMS_PAGE_INDEX -> "Arms"
+            CARDIO_PAGE_INDEX -> getString(R.string.cardioCategory)
+            LEGS_PAGE_INDEX -> getString(R.string.legsCategory)
+            ARMS_PAGE_INDEX -> getString(R.string.armsCategory)
             else -> null
         }
     }

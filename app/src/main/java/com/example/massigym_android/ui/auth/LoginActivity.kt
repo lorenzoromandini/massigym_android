@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import com.example.massigym_android.R
 import com.example.massigym_android.ui.common.BottomNavBar
 import com.example.massigym_android.databinding.ActivityLoginBinding
 import com.google.android.gms.tasks.OnCompleteListener
@@ -49,16 +50,16 @@ class LoginActivity : AppCompatActivity() {
         ) {
 
             if (email.isEmpty()) {
-                emailInput.error = "Email richiesta"
+                emailInput.error = getString(R.string.emailRequired)
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                emailInput.error = "Inserisci un formato email valido"
+                emailInput.error = getString(R.string.emailInvalid)
             }
             if (password.isEmpty()) {
-                passwordInput.error = "Password richiesta"
+                passwordInput.error = getString(R.string.passwordRequired)
             }
             if (password.length < 6) {
-                passwordInput.error = "Immettere una Password valida. (Min. 6 caratteri)"
+                passwordInput.error = getString(R.string.passwordInvalid)
             }
             return
         }
@@ -69,11 +70,11 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val intent = Intent(this, BottomNavBar::class.java)
                     startActivity(intent)
-                    Toast.makeText(this, "Login effettuato", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, getString(R.string.loginDone), Toast.LENGTH_SHORT)
                         .show()
                     finish()
                 } else {
-                    Toast.makeText(baseContext, "Authentication failed", Toast.LENGTH_LONG).show()
+                    Toast.makeText(baseContext, getString(R.string.somethingWentWrong), Toast.LENGTH_LONG).show()
                 }
             })
     }

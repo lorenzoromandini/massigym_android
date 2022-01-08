@@ -102,7 +102,7 @@
             android:id="@+id/notYetRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Non sei ancora registrato? "
+            android:text="@string/notRegisteredYet"
             android:textColor="@color/black" />
 
         <TextView
@@ -126,7 +126,7 @@
         android:id="@+id/goToResetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password dimenticata?"
+        android:text="@string/forgotPassword"
         android:textColor="@color/deepPurpleAccent"
         android:textStyle="bold" />
 

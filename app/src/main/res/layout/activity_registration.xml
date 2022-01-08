@@ -117,7 +117,7 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:hint="Conferma Password"
+            android:hint="@string/passwordConfirm"
             android:inputType="textPassword"
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
@@ -148,7 +148,7 @@
             android:id="@+id/notYetRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sei già registrato? "
+            android:text="@string/yetRegistered"
             android:textColor="@color/black"
             />
 

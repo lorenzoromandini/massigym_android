@@ -1,22 +1,90 @@
 <resources>
     <string name="app_name">massigym_android</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--
+   This string is used for square devices and overridden by hello_world in
+   values-round/strings.xml for round devices.
+   -->
+    <string name="hello_world">Hello Square World!</string>
 
     <string name="cardioTopDescription">Qualunque tipo di esercizio che aumenti il tuo battito cardiaco.</string>
     <string name="cardioBottomDescription">Un sistema cardio-vascolare forte significa più capillari che inviano più ossigeno alle cellule nei tuoi muscoli. Questo permette alle tue cellule di bruciare più grasso sia durante l’esercizio che nell’inattività. Gli esercizi cardio usano un ampio movimento muscolare per un periodo di tempo prolungato, mantenendo il tuo livello cardiaco ad almeno il 50% del suo livello massimo.</string>
     <string name="cardioImageUrl">https://firebasestorage.googleapis.com/v0/b/massigym-80757.appspot.com/o/cardio%2Fcat_cardio.png?alt=media&amp;token=c8f29d87-c4b8-4d6f-bf3c-a029ec71c851</string>
+
     <string name="legsTopDescription">Gli esercizi per le gambe sono mirati per i muscoli più grandi del corpo.</string>
     <string name="legsBottomDescription">Allenare le gambe significa bruciare più calorie, elevando i tuoi livelli di testosterone, incrementando i sollevamenti, migliorando la mobilità e, certamente, sviluppando forza, potenza e massa. Se vuoi tonificare le gambe, segui i nostri esercizi tutti i giorni.</string>
     <string name="legsImageUrl">https://firebasestorage.googleapis.com/v0/b/massigym-80757.appspot.com/o/legs%2Fcat_legs.png?alt=media&amp;token=2b064350-b4db-41b9-9fe1-4ab4af69a78c</string>
+
     <string name="armsTopDescription">Per un allenamento completo, è meglio praticare una varietà di movimenti per ogni parte del corpo.</string>
     <string name="armsBottomDescription">Se vuoi allenare le braccia, non puoi semplicemente allenare le braccia. Per avere progressi con gli esercizi delle braccia, hai bisogno di sviluppare forza nelle altre parti del corpo, altrimenti alcuni esercizi diventano troppo faticosi.</string>
     <string name="armsImageUrl">https://firebasestorage.googleapis.com/v0/b/massigym-80757.appspot.com/o/arms%2Fcat_arms.png?alt=media&amp;token=2a5dbf6a-4d7c-4ce0-b94d-e149c486c688</string>
-    <string name="title_activity_reset_password">ResetPassword</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
+
+    <string name="emailRequired">Email richiesta</string>
+    <string name="emailInvalid">Immettere una Email valida.</string>
+
+    <string name="passwordRequired">Password richiesta</string>
+    <string name="passwordInvalid">Immettere una Password valida. (Min. 6 caratteri)</string>
+
+    <string name="notRegisteredYet">Non sei ancora registrato? </string>
+
+    <string name="forgotPassword">Password dimenticata?</string>
+
+    <string name="sendResetPassword">Richiesta inviata</string>
+
+    <string name="loginDone">Login effettuato</string>
+
+    <string name="usernameRequired">Username richiesto</string>
+    <string name="usernameInvalid">Immettere uno Username valido. (Min. 5 caratteri)"</string>
+
+    <string name="passwordConfirmRequired">Conferma Password richiesta</string>
+
+    <string name="passwordNotEquals">Le Password non coincidono</string>
+
+    <string name="yetRegistered">Sei già registrato? </string>
+
+    <string name="passwordConfirm">Conferma Password</string>
+
+    <string name="registrationSuccess">Account creato con successo</string>
+
+    <string name="profileImageChanged">Immagine caricata con successo</string>
+
+    <string name="changePassword">Modifica Password</string>
+    <string name="passwordChangedSuccessfully">Modifica Password effettuata</string>
+
+    <string name="grantPermissions">Concedi i permessi e riprova</string>
+
+    <string name="addWorkoutInitialized">Inserimento Workout avviato...</string>
+    <string name="addWorkoutPending">Inserimento Workout in corso...</string>
+    <string name="addWorkoutSuccess">Allenamento inserito con successo</string>
+
+    <string name="nameRequired">Nome richiesto</string>
+    <string name="nameInvalid">Immetti un Nome valido. (Min. 2 caratteri)</string>
+
+    <string name="categoryRequired">Categoria richiesta</string>
+
+    <string name="descriptionRequired">Descrizione richiesta</string>
+    <string name="descriptionInvalid">Immetti una Descrizione valida. (Min. 10 caratteri)</string>
+
+    <string name="durationRequired">Durata richiesta</string>
+
+    <string name="addWorkout">Inserisci Workout</string>
+
+    <string name="noFileSelected">Nessun file selezionato</string>
+
+    <string name="addToFavourites">Aggiunto ai Preferiti</string>
+    <string name="removeFromFavourites">Rimosso dai Preferiti</string>
+
+    <string name="addLike">Mi Piace aggiunto</string>
+    <string name="removeLike">Mi Piace rimosso</string>
+
+    <string name="deleteWorkout">Workout eliminato</string>
+
+    <string name="downloadPending">Download in corso...</string>
+
+    <string name="cardioCategory">Cardio</string>
+    <string name="legsCategory">Legs</string>
+    <string name="armsCategory">Arms</string>
+
+    <string name="somethingWentWrong">Qualcosa è andato storto...</string>
 
 </resources>

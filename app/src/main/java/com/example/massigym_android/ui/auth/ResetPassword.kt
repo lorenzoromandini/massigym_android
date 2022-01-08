@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import com.example.massigym_android.R
 import com.example.massigym_android.databinding.ActivityResetPasswordBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -12,8 +13,6 @@ import com.google.firebase.auth.FirebaseAuth
 class ResetPassword : AppCompatActivity() {
 
     private lateinit var binding: ActivityResetPasswordBinding
-
-    private lateinit var emailInput: TextInputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,26 +28,26 @@ class ResetPassword : AppCompatActivity() {
     }
 
     private fun resetPassword() {
-        val email = emailInput.text.toString().trim()
-        val emailInput = binding.resetPasswordEmail
+        val email = binding.resetPasswordEmail.text.toString().trim()
+        val emailInput = binding.resetPasswordEmailInput
 
         if (email.isEmpty()) {
-            emailInput.error = "Email richiesta"
+            emailInput.error = getString(R.string.emailRequired)
             return
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailInput.error = "Inserisci un formato email valido"
+            emailInput.error = getString(R.string.emailInvalid)
             return
         }
 
         FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(this,
-                    "Richiesta inviata",
+                    getString(R.string.sendResetPassword),
                     Toast.LENGTH_LONG).show()
                 onBackPressed()
             } else {
-                Toast.makeText(this, "Qualcosa è andato storto...", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.somethingWentWrong), Toast.LENGTH_LONG).show()
             }
         }
     }

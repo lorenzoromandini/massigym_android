@@ -43,10 +43,6 @@ class ProfiloFragment : Fragment() {
 
     private lateinit var progressDialog: ProgressDialog
 
-    private lateinit var selectImageButton: Button
-
-    private lateinit var shootImageButton: Button
-
     companion object {
         const val REQUEST_FROM_CAMERA = 1
         const val REQUEST_FROM_GALLERY = 2
@@ -58,9 +54,6 @@ class ProfiloFragment : Fragment() {
     ): View? {
 
         binding = FragmentProfiloBinding.inflate(inflater, container, false)
-
-        selectImageButton = binding.selectImageButton
-        shootImageButton = binding.shootPhotoButton
 
         setupToolbarWithNavigation()
 
@@ -85,11 +78,11 @@ class ProfiloFragment : Fragment() {
             true
         }
 
-        selectImageButton.setOnClickListener {
+        binding.selectImageButton.setOnClickListener {
             selectImage()
         }
 
-        shootImageButton.setOnClickListener {
+        binding.shootPhotoButton.setOnClickListener {
             shootPhoto()
         }
 
@@ -131,14 +124,18 @@ class ProfiloFragment : Fragment() {
 
     private fun uploadImage(context: Context, imageUri: Uri) {
         progressDialog = ProgressDialog(context)
-        progressDialog.setMessage("Please wait, image being uploading...")
+        progressDialog.setMessage("Attendere, caricamento dell'immagine...")
         progressDialog.show()
         val uploadTask = storageRef.child("profileImage/${auth.email}").putFile(imageUri)
         uploadTask.addOnSuccessListener {
-            Log.e(TAG, "Image upload successfully")
+            Toast.makeText(context, getString(R.string.profileImageChanged),
+                Toast.LENGTH_SHORT
+            ).show()
             val downloadURLTask = storageRef.child("profileImage/${auth.email}").downloadUrl
             downloadURLTask.addOnSuccessListener {
-                Log.e(TAG, "Image Path: $it")
+                Toast.makeText(context, "Path: $it",
+                    Toast.LENGTH_LONG
+                ).show()
                 FirebaseFirestore.getInstance().collection("users").document(auth.email!!)
                     .update("imageUrl", it.toString())
                 progressDialog.dismiss()
@@ -146,7 +143,10 @@ class ProfiloFragment : Fragment() {
                 progressDialog.dismiss()
             }
         }.addOnFailureListener {
-            Log.e(TAG, "Image upload failed ${it.printStackTrace()}")
+            Toast.makeText(context,
+                "${getString(R.string.profileImageChanged)}: ${it.printStackTrace()}",
+                Toast.LENGTH_LONG
+            ).show()
         }
 
     }

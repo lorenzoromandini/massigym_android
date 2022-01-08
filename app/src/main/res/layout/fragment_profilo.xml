@@ -94,7 +94,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="600dp"
             android:backgroundTint="@color/deepPurple"
-            android:text="Modifica Password"
+            android:text="@string/changePassword"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"
