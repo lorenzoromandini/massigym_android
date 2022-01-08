@@ -2,11 +2,8 @@ package com.example.massigym_android.ui.workout
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.massigym_android.PrefUtil
 import com.example.massigym_android.databinding.ActivityWorkoutTimerBinding
-import java.sql.Time
 
 
 class WorkoutTimer : AppCompatActivity() {
@@ -20,9 +17,8 @@ class WorkoutTimer : AppCompatActivity() {
     enum class TimerState { stopped, paused, running }
 
     private lateinit var timer: CountDownTimer
-    private var timerLengthSeconds = 0L
     private var timerState = TimerState.stopped
-    private var secondsRemaining = 0L
+    private var secondsRemaining = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,28 +64,12 @@ class WorkoutTimer : AppCompatActivity() {
 
         if (timerState == TimerState.running) {
             timer.cancel()
-        } else if (timerState == TimerState.paused) {
-
         }
-
-        PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, this)
-        PrefUtil.setSecondsRemaining(secondsRemaining, this)
-        PrefUtil.setTimerState(timerState, this)
     }
 
     private fun initTimer() {
-        timerState = PrefUtil.getTimerState(this)
-
-        if (timerState == TimerState.stopped) {
-            setNewTimerLength()
-        } else {
-            setPreviousTimerLength()
-        }
-
-        if (timerState == TimerState.running || timerState == TimerState.paused) {
-            secondsRemaining = PrefUtil.getSecondsRemaining(this)
-        } else {
-            secondsRemaining = timerLengthSeconds
+        if (timerState == TimerState.stopped || timerState == TimerState.paused) {
+            secondsRemaining = duration!!
         }
 
         if (timerState == TimerState.running) {
@@ -103,12 +83,11 @@ class WorkoutTimer : AppCompatActivity() {
     private fun onTimerFinished() {
         timerState = TimerState.stopped
 
-        setNewTimerLength()
+        binding.timerView.progressBar.max = duration!!
 
         binding.timerView.progressBar.progress = 0
 
-        PrefUtil.setSecondsRemaining(timerLengthSeconds, this)
-        secondsRemaining = timerLengthSeconds
+        secondsRemaining = duration!!
 
         updateButtons()
         updateCountdownUI()
@@ -117,38 +96,20 @@ class WorkoutTimer : AppCompatActivity() {
     private fun startTimer() {
         timerState = TimerState.running
 
-        timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
+        timer = object : CountDownTimer((secondsRemaining * 1000).toLong(), 1000) {
             override fun onFinish() = onTimerFinished()
 
             override fun onTick(millisUntilFinished: Long) {
-                secondsRemaining = millisUntilFinished / 1000
+                secondsRemaining = (millisUntilFinished / 1000).toInt()
 
                 updateCountdownUI()
             }
         }.start()
     }
 
-    private fun setNewTimerLength() {
-        val lengthInMinutes = PrefUtil.getTimerLength(this)
-        timerLengthSeconds = (lengthInMinutes * 60L)
-        binding.timerView.progressBar.max = timerLengthSeconds.toInt()
-    }
-
-    private fun setPreviousTimerLength() {
-        timerLengthSeconds = PrefUtil.getPreviousTimerLengthSeconds(this)
-        binding.timerView.progressBar.max = timerLengthSeconds.toInt()
-    }
-
     private fun updateCountdownUI() {
-        val minutesUntilFinished = secondsRemaining / 60
-        val secondsInMinuteUntilFinished = secondsRemaining - minutesUntilFinished * 60
-        val secondsStr = secondsInMinuteUntilFinished.toString()
-        binding.timerView.countdownTextView.text = "$minutesUntilFinished : " +
-                "${
-                    if (secondsStr.length == 2) secondsStr
-                    else "0" + secondsStr
-                }"
-        binding.timerView.progressBar.progress = (timerLengthSeconds - secondsRemaining).toInt()
+        binding.timerView.countdownTextView.text = "$secondsRemaining"
+        binding.timerView.progressBar.progress = duration!! - secondsRemaining
     }
 
     private fun updateButtons() {

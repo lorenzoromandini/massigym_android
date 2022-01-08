@@ -35,7 +35,7 @@
             android:layout_gravity="bottom|start"
             android:layout_margin="64dp"
             android:backgroundTint="@color/white"
-            android:tint="@null"
+            app:tint="@null"
             android:src="@drawable/ic_play" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -46,7 +46,7 @@
             android:layout_margin="64dp"
             android:backgroundTint="@color/white"
             android:src="@drawable/ic_pause"
-            android:tint="@null" />
+            app:tint="@null" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/resetButton"
@@ -55,7 +55,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="64dp"
             android:backgroundTint="@color/white"
-            android:tint="@null"
+            app:tint="@null"
             android:src="@drawable/ic_stop" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
