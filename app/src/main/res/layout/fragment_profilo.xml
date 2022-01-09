@@ -49,7 +49,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="400dp"
                 android:backgroundTint="@color/purple"
-                android:text="Seleziona Immagine"
+                android:text="Carica Immagine"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="10sp"

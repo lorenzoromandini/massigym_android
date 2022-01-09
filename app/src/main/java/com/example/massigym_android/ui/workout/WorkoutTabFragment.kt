@@ -1,5 +1,6 @@
 package com.example.massigym_android.ui.workout
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +22,11 @@ class WorkoutTabFragment : Fragment() {
         binding = FragmentWorkoutBinding.inflate(inflater, container, false)
 
         setupViewPagerWithTabs()
+
+        binding.fabWorkout.setOnClickListener {
+            val intent = Intent(context, AddWorkout::class.java)
+            startActivity(intent)
+        }
 
         return binding.root
     }

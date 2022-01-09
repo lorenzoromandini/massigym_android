@@ -43,11 +43,6 @@ class LegsFragment : Fragment() {
             }
         })
 
-        binding.fabLegs.setOnClickListener {
-            val intent = Intent(context, AddWorkout::class.java)
-            startActivity(intent)
-        }
-
         return binding.root
     }
 

@@ -22,20 +22,4 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_cardio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="60dp"
-        app:useCompatPadding="true"
-        android:backgroundTint="@color/deepPurple"
-        android:elevation="100dp"
-        android:src="@drawable/ic_add"
-        app:tint="@color/white"
-        app:maxImageSize="30dp"
-        android:scaleType="center" />
-
 </RelativeLayout>
