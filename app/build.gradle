@@ -23,6 +23,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -48,7 +53,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.0.0'
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.0'
+    implementation 'com.google.firebase:firebase-database:11.0.4'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-core:9.6.1'
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
@@ -58,6 +65,14 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     testImplementation 'junit:junit:4.+'
+    testImplementation 'com.google.truth:truth:1.0.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    testImplementation 'androidx.test:core:1.2.0'
+    testImplementation 'androidx.test.ext:truth:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "android.arch.core:core-testing:1.1.0"
+    androidTestImplementation "com.google.truth:truth:1.0.1"
+    testImplementation "org.robolectric:robolectric:4.0.2"
 }
+
+apply plugin: 'com.google.gms.google-services'

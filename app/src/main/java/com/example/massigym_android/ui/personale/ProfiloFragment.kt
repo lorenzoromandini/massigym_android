@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.massigym_android.R
 import com.example.massigym_android.databinding.FragmentProfiloBinding
 import com.example.massigym_android.ui.auth.LoginActivity
+import com.example.massigym_android.ui.common.BottomNavBar
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -105,6 +106,8 @@ class ProfiloFragment : Fragment() {
         FirebaseAuth.getInstance().signOut()
         startActivity(Intent(context, LoginActivity::class.java))
         Toast.makeText(context, "Logout effettuato", Toast.LENGTH_SHORT).show()
+        getFragmentManager()?.beginTransaction()?.remove(this)?.commitAllowingStateLoss()
+        activity?.finish()
     }
 
     private fun checkImage(user: DocumentSnapshot) {
