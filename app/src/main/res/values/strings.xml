@@ -87,4 +87,28 @@
 
     <string name="somethingWentWrong">Qualcosa è andato storto...</string>
 
+    <string-array name="categories">
+        <item>cardio</item>
+        <item>legs</item>
+        <item>arms</item>
+    </string-array>
+
+    <string-array name="durations">
+        <item>15</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+        <item>150</item>
+        <item>180</item>
+        <item>210</item>
+        <item>240</item>
+        <item>270</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+    </string-array>
+
 </resources>

@@ -1,12 +1,13 @@
 package com.example.massigym_android.ui.workout
 
 import android.app.Activity
-import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Patterns
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.massigym_android.R
@@ -17,7 +18,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.io.File
+import java.text.FieldPosition
 import java.util.HashMap
 
 class AddWorkout : AppCompatActivity() {
@@ -33,6 +34,9 @@ class AddWorkout : AppCompatActivity() {
     private var IMAGE_CODE = 1
     private var VIDEO_CODE = 2
 
+    private var category: String = ""
+    private var duration: String = ""
+
     private lateinit var auth: FirebaseUser
 
     private lateinit var username: String
@@ -42,7 +46,7 @@ class AddWorkout : AppCompatActivity() {
     private var favourites: ArrayList<String> = arrayListOf()
     private var likes: ArrayList<String> = arrayListOf()
     private var searchKeyList: ArrayList<String> = arrayListOf()
-    private var splitName: List<String> = arrayListOf()
+    private var splitName: List<String> = listOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +58,8 @@ class AddWorkout : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance().currentUser!!
 
+        storageRef = FirebaseStorage.getInstance().reference
+
         FirebaseFirestore.getInstance().collection("users").document(auth.email!!)
             .get()
             .addOnCompleteListener { task ->
@@ -63,10 +69,22 @@ class AddWorkout : AppCompatActivity() {
                 }
             }
 
-        storageRef = FirebaseStorage.getInstance().reference
-
         binding.titleSelectImage.setText(getString(R.string.noFileSelected))
         binding.titleSelectVideo.setText(getString(R.string.noFileSelected))
+
+        val categories = resources.getStringArray(R.array.categories)
+        val arrayAdapterCategory = ArrayAdapter(this, R.layout.dropdown_item, categories)
+        binding.autoCompleteTextViewCategory.setAdapter(arrayAdapterCategory)
+        binding.autoCompleteTextViewCategory.setOnItemClickListener { adapterView, view, i, l ->
+            category = adapterView?.getItemAtPosition(i).toString()
+        }
+
+        val durations = resources.getStringArray(R.array.durations)
+        val arrayAdapterDuration = ArrayAdapter(this, R.layout.dropdown_item, durations)
+        binding.autoCompleteTextViewDuration.setAdapter(arrayAdapterDuration)
+        binding.autoCompleteTextViewDuration.setOnItemClickListener { adapterView, view, i, l ->
+            duration = adapterView?.getItemAtPosition(i).toString()
+        }
 
         binding.selectImageButton.setOnClickListener {
             selectImage()
@@ -88,8 +106,12 @@ class AddWorkout : AppCompatActivity() {
         val nameInput = binding.nameInput
         val descrizione = binding.workoutDescription.text.toString().trim()
         val descrizioneInput = binding.descrizioneInput
+        val categoryInput = binding.categoryInput
+        val durationInput = binding.durationInput
 
-        if (name.isEmpty() || name.length < 2 || descrizione.isEmpty() || descrizione.length < 10) {
+        if (name.isEmpty() || name.length < 2 || descrizione.isEmpty() || descrizione.length < 10 ||
+            category.isEmpty() || duration.isEmpty()) {
+
             if (name.isEmpty()) {
                 nameInput.error = getString(R.string.nameRequired)
             }
@@ -102,19 +124,20 @@ class AddWorkout : AppCompatActivity() {
             if (descrizione.length < 10) {
                 descrizioneInput.error = getString(R.string.descriptionInvalid)
             }
-
-
+            if (category.isEmpty()) {
+                categoryInput.error = "Categoria richiesta"
+            }
+            if (descrizione.isEmpty()) {
+                durationInput.error = "Durata richiesta"
+            }
             return
         }
 
         Toast.makeText(this, getString(R.string.addWorkoutInitialized), Toast.LENGTH_SHORT).show()
 
-        val category = "cardio"
-        val duration = 270
-
         splitName = name.split(" ")
 
-        for (i in 0..splitName.size -1) {
+        for (i in 0..splitName.size - 1) {
             for (y in 1..splitName[i].length) {
                 searchKeyList.add(splitName[i].substring(0, y).toLowerCase())
             }
@@ -126,7 +149,7 @@ class AddWorkout : AppCompatActivity() {
         workoutMap["category"] = category
         workoutMap["name"] = name
         workoutMap["description"] = descrizione
-        workoutMap["duration"] = duration
+        workoutMap["duration"] = duration.toInt()
         workoutMap["imageUrl"] = ""
         workoutMap["videoUrl"] = ""
         workoutMap["favourites"] = favourites

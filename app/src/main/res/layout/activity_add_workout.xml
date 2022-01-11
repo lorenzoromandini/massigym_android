@@ -52,10 +52,10 @@
                     android:id="@+id/title_selectImage"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="200dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="150dp"
                     android:textAlignment="center"
-                    tools:text="Nessune file selezionato"/>
+                    tools:text="Nessune file selezionato" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/name_input"
@@ -80,6 +80,26 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/categoryInput"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="68dp"
+                    android:hint="Categoria"
+                    app:errorEnabled="true"
+                    app:errorTextColor="@color/errors"
+                    app:startIconDrawable="@drawable/ic_category"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="320dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextView_category"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/descrizione_input"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="wrap_content"
@@ -101,6 +121,27 @@
                         android:textColorHint="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/durationInput"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="68dp"
+                    android:hint="Durata"
+                    app:errorEnabled="true"
+                    app:errorTextColor="@color/errors"
+                    app:startIconDrawable="@drawable/ic_time"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="500dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextView_duration"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <Button
                     android:id="@+id/selectVideoButton"
                     android:layout_width="350dp"
@@ -118,10 +159,10 @@
                     android:id="@+id/title_selectVideo"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="650dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="650dp"
                     android:textAlignment="center"
-                    tools:text="Nessune file selezionato"/>
+                    tools:text="Nessune file selezionato" />
 
                 <Button
                     android:id="@+id/addWorkoutButton"
@@ -130,7 +171,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="750dp"
                     android:layout_marginBottom="60dp"
-                    android:backgroundTint="@color/red"
+                    android:backgroundTint="@color/pink"
                     android:text="Inserisci Workout"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
