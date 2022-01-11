@@ -43,6 +43,10 @@ class ArmsFragment : Fragment() {
             }
         })
 
+        binding.searchButton.setOnClickListener {
+            search()
+        }
+
         return binding.root
     }
 
@@ -63,6 +67,33 @@ class ArmsFragment : Fragment() {
                     "An error occurred: ${it.localizedMessage}",
                     Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun search() {
+        val insertName = binding.searchName.text.toString()
+        if (insertName == "") {
+            getListData()
+        } else {
+            FirebaseFirestore.getInstance().collection("workouts")
+                .whereEqualTo("category", "arms")
+                .whereArrayContains("searchKeywords", insertName)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        val workout = documents.toObjects(Workout::class.java)
+                        binding.recyclerArms.adapter =
+                            CLAWorkoutAdapter(requireContext(), workout)
+                        val id = document.id
+                        workoutIDList.add(id)
+                    }
+
+                }.addOnFailureListener {
+                    Toast.makeText(context,
+                        "An error occurred: ${it.localizedMessage}",
+                        Toast.LENGTH_SHORT).show()
+                }
+        }
+
     }
 
     interface OnItemClickListener {

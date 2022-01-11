@@ -147,7 +147,7 @@ class ProfiloFragment : Fragment() {
             }
         }.addOnFailureListener {
             Toast.makeText(context,
-                "${getString(R.string.profileImageChanged)}: ${it.printStackTrace()}",
+                "${getString(R.string.somethingWentWrong)}: ${it.printStackTrace()}",
                 Toast.LENGTH_LONG
             ).show()
         }
