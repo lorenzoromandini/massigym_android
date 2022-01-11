@@ -70,6 +70,9 @@ class CardioFragment : Fragment() {
     }
 
     private fun search() {
+        Toast.makeText(context,
+            "Ricerca...",
+            Toast.LENGTH_SHORT).show()
         val insertName = binding.searchName.text.toString()
         if (insertName == "") {
             getListData()

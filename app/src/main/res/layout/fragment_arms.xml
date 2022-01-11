@@ -16,7 +16,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp" >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/searchName"
@@ -31,7 +32,7 @@
         <Button
             android:id="@+id/searchButton"
             android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_height="65dp"
             android:backgroundTint="@color/deepPurple"
             android:text="Cerca"
             android:textAllCaps="false"

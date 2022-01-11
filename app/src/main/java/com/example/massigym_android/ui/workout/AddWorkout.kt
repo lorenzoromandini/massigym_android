@@ -13,6 +13,7 @@ import com.example.massigym_android.R
 import com.example.massigym_android.databinding.ActivityAddWorkoutBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -36,12 +37,12 @@ class AddWorkout : AppCompatActivity() {
 
     private lateinit var username: String
 
-    private lateinit var progressDialog: ProgressDialog
-
     private lateinit var storageRef: StorageReference
 
     private var favourites: ArrayList<String> = arrayListOf()
     private var likes: ArrayList<String> = arrayListOf()
+    private var searchKeyList: ArrayList<String> = arrayListOf()
+    private var splitName: List<String> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,10 +107,18 @@ class AddWorkout : AppCompatActivity() {
             return
         }
 
-
+        Toast.makeText(this, getString(R.string.addWorkoutInitialized), Toast.LENGTH_SHORT).show()
 
         val category = "cardio"
         val duration = 270
+
+        splitName = name.split(" ")
+
+        for (i in 0..splitName.size -1) {
+            for (y in 1..splitName[i].length) {
+                searchKeyList.add(splitName[i].substring(0, y).toLowerCase())
+            }
+        }
 
         val workoutMap: MutableMap<Any, Any> = HashMap()
         workoutMap["userMail"] = auth.email.toString()
@@ -122,6 +131,7 @@ class AddWorkout : AppCompatActivity() {
         workoutMap["videoUrl"] = ""
         workoutMap["favourites"] = favourites
         workoutMap["likes"] = likes
+        workoutMap["searchKeywords"] = searchKeyList
 
         FirebaseFirestore.getInstance()
             .collection("workouts").document().set(workoutMap)
@@ -165,6 +175,15 @@ class AddWorkout : AppCompatActivity() {
                 ).show()
             }
         }
+        FirebaseFirestore.getInstance()
+            .collection("statistics")
+            .document(category)
+            .update("totalWorkouts", FieldValue.increment(1))
+
+        onBackPressed()
+
+        Toast.makeText(this, getString(R.string.addWorkoutSuccess), Toast.LENGTH_SHORT).show()
+
     }
 
     private fun selectImage() {

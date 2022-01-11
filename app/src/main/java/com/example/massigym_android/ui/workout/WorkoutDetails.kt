@@ -89,14 +89,14 @@ class WorkoutDetails : AppCompatActivity() {
                     if (checkLike(workout)) {
                         binding.likeButton.setImageResource(R.drawable.ic_thumb_down)
                         binding.likeButton.setOnClickListener {
-                            removeLike()
+                            removeLike(workout)
                             onBackPressed()
                             true
                         }
                     } else {
                         binding.likeButton.setImageResource(R.drawable.ic_thumb_up_green)
                         binding.likeButton.setOnClickListener {
-                            addLike()
+                            addLike(workout)
                             onBackPressed()
                             true
                         }
@@ -167,7 +167,7 @@ class WorkoutDetails : AppCompatActivity() {
         return checkL;
     }
 
-    private fun addLike() {
+    private fun addLike(workout: DocumentSnapshot) {
         checkL = true;
 
         FirebaseFirestore.getInstance()
@@ -175,16 +175,26 @@ class WorkoutDetails : AppCompatActivity() {
             .document(id!!)
             .update("likes", FieldValue.arrayUnion(auth.email.toString()))
 
+        FirebaseFirestore.getInstance()
+            .collection("statistics")
+            .document(workout["category"].toString())
+            .update("totalLikes", FieldValue.increment(1))
+
         Toast.makeText(this, getString(R.string.addLike), Toast.LENGTH_SHORT).show()
     }
 
-    private fun removeLike() {
+    private fun removeLike(workout: DocumentSnapshot) {
         checkL = false;
 
         FirebaseFirestore.getInstance()
             .collection("workouts")
             .document(id!!)
             .update("likes", FieldValue.arrayRemove(auth.email.toString()))
+
+        FirebaseFirestore.getInstance()
+            .collection("statistics")
+            .document(workout["category"].toString())
+            .update("totalLikes", FieldValue.increment(-1))
 
         Toast.makeText(this, getString(R.string.removeLike), Toast.LENGTH_SHORT).show()
     }
@@ -216,6 +226,11 @@ class WorkoutDetails : AppCompatActivity() {
             .collection("workouts")
             .document(id!!)
             .delete()
+
+        FirebaseFirestore.getInstance()
+            .collection("statistics")
+            .document(workout["category"].toString())
+            .update("totalWorkouts", FieldValue.increment(-1))
 
         Toast.makeText(this, getString(R.string.deleteWorkout), Toast.LENGTH_LONG).show()
     }
