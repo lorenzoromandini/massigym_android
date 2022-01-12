@@ -1,13 +1,11 @@
 package com.example.massigym_android.ui.auth
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Patterns
 import android.widget.Toast
+import androidx.core.util.PatternsCompat
 import com.example.massigym_android.R
 import com.example.massigym_android.databinding.ActivityResetPasswordBinding
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 
 class ResetPassword : AppCompatActivity() {
@@ -35,7 +33,7 @@ class ResetPassword : AppCompatActivity() {
             emailInput.error = getString(R.string.emailRequired)
             return
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (!PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()) {
             emailInput.error = getString(R.string.emailInvalid)
             return
         }

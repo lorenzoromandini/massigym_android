@@ -3,8 +3,8 @@ package com.example.massigym_android.ui.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Patterns
 import android.widget.Toast
+import androidx.core.util.PatternsCompat
 import com.example.massigym_android.R
 import com.example.massigym_android.databinding.ActivityRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -44,24 +44,18 @@ class RegistrationActivity : AppCompatActivity() {
         val confermaPassword = binding.registrationConfirmPassword.text.toString().trim()
         val confermaPasswordInput = binding.confermaPasswordTextInputLayout
 
-        if (username.isEmpty() || username.length < 5 || email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(
+        if (username.length < 5 || email.isEmpty() || !PatternsCompat.EMAIL_ADDRESS.matcher(
                 email)
-                .matches() || password.isEmpty() || password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
+                .matches() || password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
         ) {
-            if (username.isEmpty()) {
-                usernameInput.error = getString(R.string.usernameRequired)
-            }
             if (username.length < 5) {
                 usernameInput.error = getString(R.string.usernameInvalid)
             }
             if (email.isEmpty()) {
                 emailInput.error = getString(R.string.emailRequired)
             }
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            if (!PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()) {
                 emailInput.error = getString(R.string.emailInvalid)
-            }
-            if (password.isEmpty()) {
-                passwordInput.error = getString(R.string.passwordRequired)
             }
             if (password.length < 6) {
                 passwordInput.error = getString(R.string.passwordInvalid)
