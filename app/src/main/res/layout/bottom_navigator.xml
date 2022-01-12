@@ -27,4 +27,10 @@
         app:itemIconTint="@drawable/bottom_nav_color"
         app:menu="@menu/bottom_navbar"/>
 
+    <FrameLayout
+        android:id="@+id/layout_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </FrameLayout>
+
 </RelativeLayout>

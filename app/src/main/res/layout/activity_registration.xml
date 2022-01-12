@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
+    android:id="@+id/layout_registration"
     tools:context=".ui.auth.RegistrationActivity">
 
     <com.google.android.material.appbar.AppBarLayout

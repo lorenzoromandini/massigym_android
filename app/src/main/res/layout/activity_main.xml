@@ -7,11 +7,18 @@
     tools:context=".MainActivity">
 
     <ImageView
+        android:id="@+id/splash_screen_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/logo_start_screen"
         tools:src="@drawable/logo_start_screen"
         android:background="@color/black"
         app:tint="@color/white"/>
+
+    <FrameLayout
+        android:id="@+id/layout_mainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

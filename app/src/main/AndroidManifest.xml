@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Massigym_android">
+        <uses-library android:name="android.test.runner" android:required="false" />
 
         <activity
             android:name=".MainActivity"
@@ -22,14 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.auth.ResetPassword">
-        </activity>
+        <activity android:name=".ui.auth.ResetPassword"></activity>
         <activity
             android:name=".ui.auth.RegistrationActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name=".ui.auth.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name=".ui.personale.ChangePassword"
             android:screenOrientation="portrait" />
@@ -48,7 +50,7 @@
         <activity
             android:name=".ui.common.BottomNavBar"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.example.massigym_android.ui.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.core.util.PatternsCompat
 import com.example.massigym_android.R
@@ -22,10 +23,6 @@ class LoginActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.loginButton.setOnClickListener {
-            login()
-        }
-
         binding.goToRegister.setOnClickListener {
             val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
@@ -38,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun login() {
+    fun login(view: View) {
 
         val email = binding.loginEmail.text.toString().trim()
         val emailInput = binding.emailTextInputLayout
