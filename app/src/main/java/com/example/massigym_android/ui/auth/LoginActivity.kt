@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
         val passwordInput = binding.passwordTextInputLayout
 
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email)
-                .matches() || password.isEmpty() || password.length < 6
+                .matches() || password.length < 6
         ) {
 
             if (email.isEmpty()) {
@@ -54,9 +54,6 @@ class LoginActivity : AppCompatActivity() {
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 emailInput.error = getString(R.string.emailInvalid)
-            }
-            if (password.isEmpty()) {
-                passwordInput.error = getString(R.string.passwordRequired)
             }
             if (password.length < 6) {
                 passwordInput.error = getString(R.string.passwordInvalid)

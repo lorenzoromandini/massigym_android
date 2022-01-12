@@ -43,11 +43,8 @@ class ChangePassword : AppCompatActivity() {
         val confermaPassword = binding.changeConfirmPassword.text.toString().trim()
         val confermaPasswordInput = binding.confermaPasswordTextInputLayout
 
-        if (password.isEmpty() || password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
+        if (password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
         ) {
-            if (password.isEmpty()) {
-                passwordInput.error = getString(R.string.passwordRequired)
-            }
             if (password.length < 6) {
                 passwordInput.error = getString(R.string.passwordInvalid)
             }

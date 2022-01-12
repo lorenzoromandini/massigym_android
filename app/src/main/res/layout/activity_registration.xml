@@ -29,7 +29,6 @@
         android:id="@+id/logo_registration"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         app:srcCompat="@drawable/logo_inverted" />
 
@@ -37,9 +36,8 @@
         android:id="@+id/usernameTextInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
         app:errorEnabled="true"
         app:errorTextColor="@color/errors"
         app:startIconDrawable="@drawable/ic_user">
@@ -59,9 +57,9 @@
         android:id="@+id/emailTextInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         app:errorEnabled="true"
         app:errorTextColor="@color/errors"
         app:startIconDrawable="@drawable/ic_email">
@@ -81,9 +79,9 @@
         android:id="@+id/passwordTextInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true"
         app:errorTextColor="@color/errors"
@@ -104,9 +102,9 @@
         android:id="@+id/confermaPasswordTextInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         app:errorEnabled="true"
         app:passwordToggleEnabled="true"
         app:errorTextColor="@color/errors"
@@ -134,7 +132,7 @@
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:backgroundTint="@color/deepPurple" />
 
     <LinearLayout

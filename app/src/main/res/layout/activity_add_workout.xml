@@ -55,15 +55,17 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="150dp"
                     android:textAlignment="center"
-                    tools:text="Nessune file selezionato" />
+                    tools:text="Nessune file selezionato"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/name_input"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="wrap_content"
-                    android:layout_height="68dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="250dp"
+                    android:layout_marginTop="200dp"
                     app:errorEnabled="true"
                     app:errorTextColor="@color/errors"
                     app:startIconDrawable="@drawable/ic_name_add">
@@ -83,13 +85,13 @@
                     android:id="@+id/categoryInput"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="wrap_content"
-                    android:layout_height="68dp"
+                    android:layout_height="wrap_content"
                     android:hint="Categoria"
                     app:errorEnabled="true"
                     app:errorTextColor="@color/errors"
                     app:startIconDrawable="@drawable/ic_category"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="320dp">
+                    android:layout_marginTop="300dp">
 
                     <AutoCompleteTextView
                         android:id="@+id/autoCompleteTextView_category"
@@ -103,7 +105,7 @@
                     android:id="@+id/descrizione_input"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="wrap_content"
-                    android:layout_height="68dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="400dp"
                     app:errorEnabled="true"
@@ -125,7 +127,7 @@
                     android:id="@+id/durationInput"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="wrap_content"
-                    android:layout_height="68dp"
+                    android:layout_height="wrap_content"
                     android:hint="Durata"
                     app:errorEnabled="true"
                     app:errorTextColor="@color/errors"
@@ -162,14 +164,17 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="650dp"
                     android:textAlignment="center"
-                    tools:text="Nessune file selezionato" />
+                    tools:text="Nessune file selezionato"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/addWorkoutButton"
+                    app:cornerRadius="125dp"
                     android:layout_width="350dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="750dp"
+                    android:layout_marginTop="720dp"
                     android:layout_marginBottom="60dp"
                     android:backgroundTint="@color/pink"
                     android:text="Inserisci Workout"

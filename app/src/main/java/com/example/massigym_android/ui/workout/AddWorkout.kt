@@ -109,17 +109,10 @@ class AddWorkout : AppCompatActivity() {
         val categoryInput = binding.categoryInput
         val durationInput = binding.durationInput
 
-        if (name.isEmpty() || name.length < 2 || descrizione.isEmpty() || descrizione.length < 10 ||
+        if (name.length < 2 || descrizione.length < 10 ||
             category.isEmpty() || duration.isEmpty()) {
-
-            if (name.isEmpty()) {
-                nameInput.error = getString(R.string.nameRequired)
-            }
             if (name.length < 2) {
                 nameInput.error = getString(R.string.nameInvalid)
-            }
-            if (descrizione.isEmpty()) {
-                descrizioneInput.error = getString(R.string.descriptionRequired)
             }
             if (descrizione.length < 10) {
                 descrizioneInput.error = getString(R.string.descriptionInvalid)
