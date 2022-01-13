@@ -74,11 +74,13 @@ class RegistrationActivity : AppCompatActivity() {
             return
         }
 
-         */
+
         else if(FirebaseFirestore.getInstance().collection("users").document(email) != null) {
             emailInput.error = "Esiste già un utente con questa Email"
             return
         }
+
+         */
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
