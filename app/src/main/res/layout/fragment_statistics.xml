@@ -6,10 +6,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.workout.WorkoutTabFragment">
+        tools:context=".ui.statistics.StatisticsTabFragment">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_workout"
+            android:id="@+id/appbar_statistics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/indigo"
@@ -18,15 +18,16 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_workout"
+                android:id="@+id/toolbar_statistics"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
-                app:title="Workout"
+                app:title="Statistiche"
+                app:navigationIcon="@drawable/ic_arrow_back"
                 app:titleTextColor="@color/white" />
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabBar_workout"
+                android:id="@+id/tabBar_statistics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:overScrollMode="never"
@@ -35,7 +36,7 @@
                 app:tabMode="fixed"
                 android:background="@color/indigo"
                 app:tabSelectedTextColor="@color/white"
-                app:tabTextColor="#bcbcbc" />
+                app:tabTextColor="#bcbcbc"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/pager"
@@ -46,22 +47,6 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         </com.google.android.material.appbar.AppBarLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_workout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/deepPurple"
-            android:elevation="100dp"
-            android:scaleType="center"
-            android:src="@drawable/ic_add"
-            app:maxImageSize="30dp"
-            app:tint="@color/white"
-            app:useCompatPadding="true" />
 
     </RelativeLayout>
 

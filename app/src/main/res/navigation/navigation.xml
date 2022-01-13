@@ -9,7 +9,16 @@
         android:name="com.example.massigym_android.ui.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/from_home_to_statistics"
+            app:destination="@id/statisticsFragment" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.massigym_android.ui.statistics.StatisticsTabFragment"
+        android:label="Workout"
+        tools:layout="@layout/fragment_statistics">
     </fragment>
 
     <fragment

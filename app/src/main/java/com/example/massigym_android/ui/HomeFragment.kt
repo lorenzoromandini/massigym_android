@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.massigym_android.R
@@ -21,6 +22,12 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        binding.toolbarHome.menu.getItem(0).setOnMenuItemClickListener {
+            binding.root.findNavController()
+                .navigate(R.id.from_home_to_statistics)
+            true
+        }
 
         binding.categoryCardio.categoryTitle.setText(getString(R.string.cardioCategory))
         setCategoryImage(binding.categoryCardio.categoryImage, getString(R.string.cardioImageUrl))
