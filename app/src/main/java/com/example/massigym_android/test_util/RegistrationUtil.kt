@@ -6,7 +6,6 @@ import androidx.core.util.PatternsCompat
 object RegistrationUtil {
 
     private val existingUserMail = "test@gmail.com"
-    private val existingUsername = "test"
 
     fun validateRegistrationInput(
         username: String,
@@ -18,9 +17,6 @@ object RegistrationUtil {
             return false
         }
         if (username.length < 5) {
-            return false
-        }
-        if (username in existingUsername) {
             return false
         }
         if (!PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()) {

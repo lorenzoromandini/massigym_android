@@ -79,7 +79,8 @@ dependencies {
     androidTestImplementation "android.arch.core:core-testing:1.1.0"
     androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation "com.google.truth:truth:1.0.1"
-    testImplementation "org.robolectric:robolectric:4.0.2"
+    implementation "androidx.fragment:fragment-ktx:1.4.0"
+    debugImplementation "androidx.fragment:fragment-testing:1.4.0"
 }
 
 apply plugin: 'com.google.gms.google-services'

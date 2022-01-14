@@ -29,10 +29,6 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.goToResetPassword.setOnClickListener {
-            val intent = Intent(this, ResetPassword::class.java)
-            startActivity(intent)
-        }
     }
 
     fun login(view: View) {
@@ -73,5 +69,9 @@ class LoginActivity : AppCompatActivity() {
             })
     }
 
+    fun goToResetPassword(view: View) {
+        val intent = Intent(this, ResetPassword::class.java)
+        startActivity(intent)
+    }
 
 }

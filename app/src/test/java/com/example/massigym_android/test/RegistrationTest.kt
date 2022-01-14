@@ -29,17 +29,6 @@ class RegistrationTest {
     }
 
     @Test
-    fun registrationErrorUsernameExisting() {
-        val check = RegistrationUtil.validateRegistrationInput(
-            "test",
-            "mariorossi@gmail.com",
-            "123456",
-            "123456"
-        )
-        assertThat(check).isFalse()
-    }
-
-    @Test
     fun registrationErrorNoEmail() {
         val check = RegistrationUtil.validateRegistrationInput(
             "mario rossi",
