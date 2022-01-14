@@ -7,9 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,8 +18,8 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.text.FieldPosition
-import java.util.HashMap
+import java.util.*
+
 
 class AddWorkout : AppCompatActivity() {
 
@@ -142,9 +139,9 @@ class AddWorkout : AppCompatActivity() {
     private fun addWorkout() {
 
         val name = binding.workoutName.text.toString().trim()
-        val nameInput = binding.nameInput
+        val nameInput = binding.workoutName
         val descrizione = binding.workoutDescription.text.toString().trim()
-        val descrizioneInput = binding.descrizioneInput
+        val descrizioneInput = binding.workoutDescription
         val categoryInput = binding.categoryInput
         val durationInput = binding.durationInput
 
@@ -271,18 +268,23 @@ class AddWorkout : AppCompatActivity() {
             }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         when(requestCode) {
             STORAGE_PERMISSION_CODE -> {
-                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && REQUEST_CODE == IMAGE_CODE) {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && REQUEST_CODE == IMAGE_CODE) {
                     // permission from popup was granted
                     selectImage()
-                } else if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && REQUEST_CODE == VIDEO_CODE) {
+                } else if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && REQUEST_CODE == VIDEO_CODE) {
                     // permission from popup was granted
                     selectVideo()
                 } else {
                     // permission from popup was denied, show error message
-                    Toast.makeText(this, getString(R.string.grantPermissions), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.grantPermissions), Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         }

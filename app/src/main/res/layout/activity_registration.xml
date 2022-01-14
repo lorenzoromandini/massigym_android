@@ -84,7 +84,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
         app:errorEnabled="true"
-        app:passwordToggleEnabled="true"
         app:errorTextColor="@color/errors"
         app:startIconDrawable="@drawable/ic_key" >
 
@@ -107,7 +106,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
         app:errorEnabled="true"
-        app:passwordToggleEnabled="true"
         app:errorTextColor="@color/errors"
         app:startIconDrawable="@drawable/ic_key" >
 

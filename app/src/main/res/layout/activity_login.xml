@@ -64,7 +64,6 @@
         android:layout_marginTop="15dp"
         app:errorEnabled="true"
         app:errorTextColor="@color/errors"
-        app:passwordToggleEnabled="true"
         app:startIconDrawable="@drawable/ic_key">
 
         <com.google.android.material.textfield.TextInputEditText

@@ -7,7 +7,11 @@ import android.widget.Toast
 import androidx.core.util.PatternsCompat
 import com.example.massigym_android.R
 import com.example.massigym_android.databinding.ActivityRegistrationBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.SignInMethodQueryResult
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.HashMap
 
@@ -36,15 +40,15 @@ class RegistrationActivity : AppCompatActivity() {
     private fun signUp() {
 
         val username = binding.registrationUsername.text.toString().trim()
-        val usernameInput = binding.usernameTextInputLayout
+        val usernameInput = binding.registrationUsername
         val email = binding.registrationEmail.text.toString().trim()
-        val emailInput = binding.emailTextInputLayout
+        val emailInput = binding.registrationEmail
         val password = binding.registrationPassword.text.toString().trim()
-        val passwordInput = binding.passwordTextInputLayout
+        val passwordInput = binding.registrationPassword
         val confermaPassword = binding.registrationConfirmPassword.text.toString().trim()
-        val confermaPasswordInput = binding.confermaPasswordTextInputLayout
+        val confermaPasswordInput = binding.registrationConfirmPassword
 
-        if (username.length < 5 || email.isEmpty() || !PatternsCompat.EMAIL_ADDRESS.matcher(
+        if (username.length < 5 && email.isEmpty() || !PatternsCompat.EMAIL_ADDRESS.matcher(
                 email)
                 .matches() || password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
         ) {
@@ -67,20 +71,8 @@ class RegistrationActivity : AppCompatActivity() {
                 confermaPasswordInput.error = getString(R.string.passwordNotEquals)
             }
             return
-        }
-        /*
-        else if(FirebaseFirestore.getInstance().collection("users").whereEqualTo("username", username) != null) {
-            usernameInput.error = "Esiste giù un utente con questo Username"
-            return
-        }
 
-
-        else if(FirebaseFirestore.getInstance().collection("users").document(email) != null) {
-            emailInput.error = "Esiste già un utente con questa Email"
-            return
         }
-
-         */
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -96,7 +88,7 @@ class RegistrationActivity : AppCompatActivity() {
                     task.exception!!.printStackTrace()
                     Toast.makeText(
                         this,
-                        getString(R.string.somethingWentWrong),
+                        "${getString(R.string.somethingWentWrong)}. È possibile che un utente si sia già registrato con questa Email",
                         Toast.LENGTH_LONG
                     ).show()
                 }

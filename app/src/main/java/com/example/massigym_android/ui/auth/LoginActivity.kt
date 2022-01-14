@@ -38,9 +38,9 @@ class LoginActivity : AppCompatActivity() {
     fun login(view: View) {
 
         val email = binding.loginEmail.text.toString().trim()
-        val emailInput = binding.emailTextInputLayout
+        val emailInput = binding.loginEmail
         val password = binding.loginPassword.text.toString().trim()
-        val passwordInput = binding.passwordTextInputLayout
+        val passwordInput = binding.loginPassword
 
         if (email.isEmpty() || !PatternsCompat.EMAIL_ADDRESS.matcher(email)
                 .matches() || password.length < 6

@@ -39,9 +39,9 @@ class ChangePassword : AppCompatActivity() {
     private fun changePassword() {
 
         val password = binding.changeNewPassword.text.toString().trim()
-        val passwordInput = binding.passwordTextInputLayout
+        val passwordInput = binding.changeNewPassword
         val confermaPassword = binding.changeConfirmPassword.text.toString().trim()
-        val confermaPasswordInput = binding.confermaPasswordTextInputLayout
+        val confermaPasswordInput = binding.changeConfirmPassword
 
         if (password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
         ) {

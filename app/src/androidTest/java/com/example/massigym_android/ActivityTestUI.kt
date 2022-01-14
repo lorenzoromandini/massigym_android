@@ -13,7 +13,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class MainActivityTestUI {
+class ActivityTestUI {
 
     @Test
     fun checkMainActivityVisibility() {
@@ -36,6 +36,8 @@ class MainActivityTestUI {
         onView(withId(R.id.goToResetPassword)).check(matches(withText(R.string.forgotPassword)))
 
         onView(withId(R.id.loginButton)).perform(click())
+
+        onView(withId(R.id.goToResetPassword)).perform(click())
     }
 
     @Test

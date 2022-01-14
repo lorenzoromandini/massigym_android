@@ -27,7 +27,7 @@ class ResetPassword : AppCompatActivity() {
 
     private fun resetPassword() {
         val email = binding.resetPasswordEmail.text.toString().trim()
-        val emailInput = binding.resetPasswordEmailInput
+        val emailInput = binding.resetPasswordEmail
 
         if (email.isEmpty()) {
             emailInput.error = getString(R.string.emailRequired)
