@@ -11,7 +11,8 @@ data class Workout(
     var videoUrl: String?,
     var searchKeyList: ArrayList<String>?,
     var favourites: ArrayList<String>?,
-    var likes: ArrayList<String>?
+    var likes: ArrayList<String>?,
+    var totalLikes: Int?
 ) {
     constructor() : this(
         "",
@@ -25,5 +26,6 @@ data class Workout(
         null,
         null,
         null,
+        null
     )
 }

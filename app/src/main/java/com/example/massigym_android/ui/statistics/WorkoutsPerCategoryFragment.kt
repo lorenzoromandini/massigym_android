@@ -76,6 +76,8 @@ class WorkoutsPerCategoryFragment : Fragment() {
 
         pie.data(dataPieChart)
 
+        pie.animation(true)
+
         pie.title("Workouts per categoria")
 
         binding.pieChart!!.setChart(pie)

@@ -176,6 +176,11 @@ class WorkoutDetails : AppCompatActivity() {
             .update("likes", FieldValue.arrayUnion(auth.email.toString()))
 
         FirebaseFirestore.getInstance()
+            .collection("workouts")
+            .document(id!!)
+            .update("totalLikes", FieldValue.increment(1))
+
+        FirebaseFirestore.getInstance()
             .collection("statistics")
             .document(workout["category"].toString())
             .update("totalLikes", FieldValue.increment(1))
@@ -190,6 +195,11 @@ class WorkoutDetails : AppCompatActivity() {
             .collection("workouts")
             .document(id!!)
             .update("likes", FieldValue.arrayRemove(auth.email.toString()))
+
+        FirebaseFirestore.getInstance()
+            .collection("workouts")
+            .document(id!!)
+            .update("totalLikes", FieldValue.increment(-1))
 
         FirebaseFirestore.getInstance()
             .collection("statistics")

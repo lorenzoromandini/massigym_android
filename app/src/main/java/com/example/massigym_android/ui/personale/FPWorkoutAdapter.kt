@@ -37,11 +37,7 @@ class FPWorkoutAdapter(private var context: Context, private var workoutList: Li
                 .into(holder.workoutImage)
         }
 
-        var likes = 0
-        for (like in workout.likes!!) {
-            likes++
-        }
-        holder.workoutLikes.text = likes.toString()
+        holder.workoutLikes.text = workout.totalLikes.toString()
     }
 
     override fun getItemCount(): Int {

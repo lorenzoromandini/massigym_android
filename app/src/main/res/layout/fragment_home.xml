@@ -44,10 +44,12 @@
                     android:id="@+id/subtitle_categories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:padding="8dp"
                     android:text="Categorie"
+                    android:textSize="30sp"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     app:layout_constraintBottom_toTopOf="@id/category_cardio"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +61,7 @@
                     layout="@layout/category_view_item"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="0dp"
                     app:layout_constraintTop_toBottomOf="@id/subtitle_categories"
                     app:layout_constraintBottom_toTopOf="@id/category_legs" />
 

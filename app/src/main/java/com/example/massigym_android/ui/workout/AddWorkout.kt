@@ -1,8 +1,11 @@
 package com.example.massigym_android.ui.workout
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -33,6 +36,10 @@ class AddWorkout : AppCompatActivity() {
 
     private var IMAGE_CODE = 1
     private var VIDEO_CODE = 2
+
+    private var REQUEST_CODE = 0
+
+    private val STORAGE_PERMISSION_CODE: Int = 1000
 
     private var category: String = ""
     private var duration: String = ""
@@ -87,11 +94,43 @@ class AddWorkout : AppCompatActivity() {
         }
 
         binding.selectImageButton.setOnClickListener {
-            selectImage()
+            REQUEST_CODE = 1
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkSelfPermission((Manifest.permission.READ_EXTERNAL_STORAGE)) == PackageManager.PERMISSION_DENIED) {
+                    // permission denied, request it
+
+                    // show popup for runtime permission
+                    requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                        STORAGE_PERMISSION_CODE)
+                } else {
+                    // permission already granted, perform download
+                    selectImage()
+                }
+            } else {
+                // system os is less than marshmallow, runtime permission not required, perform download
+                selectImage()
+            }
+
         }
 
         binding.selectVideoButton.setOnClickListener {
-            selectVideo()
+            REQUEST_CODE = 2
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkSelfPermission((Manifest.permission.READ_EXTERNAL_STORAGE)) == PackageManager.PERMISSION_DENIED) {
+                    // permission denied, request it
+
+                    // show popup for runtime permission
+                    requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                        STORAGE_PERMISSION_CODE)
+                } else {
+                    // permission already granted, perform download
+                    selectVideo()
+                }
+            } else {
+                // system os is less than marshmallow, runtime permission not required, perform download
+                selectVideo()
+            }
+
         }
 
         binding.addWorkoutButton.setOnClickListener {
@@ -110,7 +149,8 @@ class AddWorkout : AppCompatActivity() {
         val durationInput = binding.durationInput
 
         if (name.length < 2 || descrizione.length < 10 ||
-            category.isEmpty() || duration.isEmpty()) {
+            category.isEmpty() || duration.isEmpty()
+        ) {
             if (name.length < 2) {
                 nameInput.error = getString(R.string.nameInvalid)
             }
@@ -148,6 +188,7 @@ class AddWorkout : AppCompatActivity() {
         workoutMap["favourites"] = favourites
         workoutMap["likes"] = likes
         workoutMap["searchKeywords"] = searchKeyList
+        workoutMap["totalLikes"] = 0
 
         FirebaseFirestore.getInstance()
             .collection("workouts").document().set(workoutMap)
@@ -228,6 +269,23 @@ class AddWorkout : AppCompatActivity() {
                 videoName = videoPath.toString()
                 binding.titleSelectVideo.setText(videoName)
             }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when(requestCode) {
+            STORAGE_PERMISSION_CODE -> {
+                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && REQUEST_CODE == IMAGE_CODE) {
+                    // permission from popup was granted
+                    selectImage()
+                } else if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && REQUEST_CODE == VIDEO_CODE) {
+                    // permission from popup was granted
+                    selectVideo()
+                } else {
+                    // permission from popup was denied, show error message
+                    Toast.makeText(this, getString(R.string.grantPermissions), Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 
 }

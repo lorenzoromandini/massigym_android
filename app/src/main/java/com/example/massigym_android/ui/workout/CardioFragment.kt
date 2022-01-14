@@ -13,6 +13,7 @@ import com.example.massigym_android.model.Workout
 import com.example.massigym_android.databinding.FragmentCardioBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class CardioFragment : Fragment() {
 
@@ -52,7 +53,10 @@ class CardioFragment : Fragment() {
     }
 
     private fun getListData() {
-        FirebaseFirestore.getInstance().collection("workouts").whereEqualTo("category", "cardio")
+        FirebaseFirestore.getInstance().collection("workouts")
+            .whereEqualTo("category", "cardio")
+            .orderBy("totalLikes", Query.Direction.DESCENDING)
+            .orderBy("name", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
@@ -80,6 +84,8 @@ class CardioFragment : Fragment() {
             FirebaseFirestore.getInstance().collection("workouts")
                 .whereEqualTo("category", "cardio")
                 .whereArrayContains("searchKeywords", insertName)
+                .orderBy("totalLikes", Query.Direction.DESCENDING)
+                .orderBy("name", Query.Direction.ASCENDING)
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {

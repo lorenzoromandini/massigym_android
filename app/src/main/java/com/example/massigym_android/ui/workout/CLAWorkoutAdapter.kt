@@ -34,11 +34,7 @@ class CLAWorkoutAdapter(private var context: Context, private var workoutList: L
                 .into(holder.workoutImage)
         }
 
-        var likes= 0
-        for (like in workout.likes!!) {
-            likes++
-        }
-        holder.workoutLikes.text = likes.toString()
+        holder.workoutLikes.text = workout.totalLikes.toString()
     }
 
     override fun getItemCount(): Int {

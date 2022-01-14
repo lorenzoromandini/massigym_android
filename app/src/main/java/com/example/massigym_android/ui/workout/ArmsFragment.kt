@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.massigym_android.model.Workout
 import com.example.massigym_android.databinding.FragmentArmsBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class ArmsFragment : Fragment() {
 
@@ -52,7 +53,10 @@ class ArmsFragment : Fragment() {
 
 
     private fun getListData() {
-        FirebaseFirestore.getInstance().collection("workouts").whereEqualTo("category", "arms")
+        FirebaseFirestore.getInstance().collection("workouts")
+            .whereEqualTo("category", "arms")
+            .orderBy("totalLikes", Query.Direction.DESCENDING)
+            .orderBy("name", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
@@ -80,6 +84,8 @@ class ArmsFragment : Fragment() {
             FirebaseFirestore.getInstance().collection("workouts")
                 .whereEqualTo("category", "arms")
                 .whereArrayContains("searchKeywords", insertName)
+                .orderBy("totalLikes", Query.Direction.DESCENDING)
+                .orderBy("name", Query.Direction.ASCENDING)
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {

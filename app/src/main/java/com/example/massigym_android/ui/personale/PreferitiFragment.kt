@@ -18,6 +18,7 @@ import com.example.massigym_android.ui.workout.WorkoutDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class PreferitiFragment : Fragment() {
 
@@ -64,6 +65,8 @@ class PreferitiFragment : Fragment() {
     private fun getListData() {
         FirebaseFirestore.getInstance().collection("workouts")
             .whereArrayContains("favourites", auth.email.toString())
+            .orderBy("totalLikes", Query.Direction.DESCENDING)
+            .orderBy("name", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
