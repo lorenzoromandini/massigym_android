@@ -25,7 +25,7 @@
 
                 <ImageView
                     android:id="@+id/workout_image"
-                    android:layout_width="140dp"
+                    android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:padding="20dp"
                     android:scaleType="centerInside"
@@ -37,47 +37,60 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
                     <TextView
                         android:id="@+id/workout_name"
-                        android:layout_width="match_parent"
+                        android:layout_width="190dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold|normal"
                         tools:text="Name" />
 
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="end"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/ic_thumb_up_blue"
+                            tools:src="@drawable/ic_thumb_up_blue" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content" >
+
                     <TextView
                         android:id="@+id/workout_time"
-                        android:layout_width="match_parent"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:gravity="center"
+                        android:gravity="start"
                         android:textColor="@android:color/darker_gray"
                         android:textSize="15sp"
                         android:textStyle="bold|normal"
-                        tools:text="Durata" />
+                        tools:text="270 s" />
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_thumb_up_blue"
-                        tools:src="@drawable/ic_thumb_up_blue" />
+                        <TextView
+                            android:id="@+id/workout_likes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="165dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold|normal"
+                            tools:text="1" />
 
-                    <TextView
-                        android:id="@+id/workout_likes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold|normal"
-                        tools:text="1" />
+                    </LinearLayout>
 
                 </LinearLayout>
 

@@ -24,7 +24,7 @@ class CLAWorkoutAdapter(private var context: Context, private var workoutList: L
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
         var workout = workoutList[position]
         holder.workoutName.text = workout.name
-        holder.workoutDuration.text = workout.duration.toString()
+        holder.workoutDuration.text = "${workout.duration.toString()} s"
 
         if (workout.imageUrl == "") {
             holder.workoutImage.setImageResource(R.drawable.workout_image_empty)

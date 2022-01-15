@@ -25,10 +25,18 @@
                 app:titleTextColor="@color/white" />
         </com.google.android.material.appbar.AppBarLayout>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
         <ImageView
             android:id="@+id/workoutDetails_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="80dp"
             android:scaleType="centerInside"
@@ -36,28 +44,31 @@
 
         <TextView
             android:id="@+id/workout_description"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
             android:layout_marginTop="250dp"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             android:textColor="?attr/colorOnSurface"
-            tools:text="MarioRossi" />
+            tools:text="Descrizione" />
 
         <TextView
             android:id="@+id/workout_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="350dp"
+            android:layout_gravity="center_horizontal"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             android:textColor="?attr/colorOnSurface"
-            tools:text="mario.rossi@gmail.com" />
+            tools:text="Autore" />
 
         <Button
             android:id="@+id/timerButton"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="400dp"
             app:backgroundTint="@color/deepPurple"
             android:text="Timer"
             android:textAllCaps="false"
@@ -70,17 +81,18 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="480dp"
             android:background="@color/white"
             tools:src="@drawable/ic_thumb_up_green" />
 
 
         <ImageView
             android:id="@+id/workoutDetails_video"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="140dp"
+            android:backgroundTint="@color/grey"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="480dp"
+            android:layout_marginTop="600dp"
             android:scaleType="centerInside"
             tools:src="@drawable/workout_video_empty" />
 
@@ -89,13 +101,18 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="650dp"
+            android:layout_marginTop="780dp"
+            android:layout_marginBottom="40dp"
             android:backgroundTint="@color/red"
             android:text="Elimina Workout"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        </ScrollView>
 
     </FrameLayout>
 

@@ -32,40 +32,42 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="110dp"
             android:scaleType="centerInside"
             tools:src="@drawable/profile_image_empty" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="280dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="320dp"
             android:layout_marginHorizontal="20dp">
 
             <Button
                 android:id="@+id/selectImageButton"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="160dp"
+                android:layout_height="70dp"
+                android:layout_gravity="start"
                 android:layout_marginTop="400dp"
+                android:layout_marginLeft="20dp"
                 android:backgroundTint="@color/purple"
                 android:text="Carica Immagine"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/shootPhotoButton"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="160dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
                 android:layout_marginTop="400dp"
+                android:layout_marginLeft="10dp"
                 android:backgroundTint="@color/purple"
                 android:text="Scatta Foto"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -73,26 +75,31 @@
             android:id="@+id/profileUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="400dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="430dp"
             android:textAppearance="?attr/textAppearanceSubtitle1"
-            android:textColor="?attr/colorOnSurface"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="25sp"
             tools:text="MarioRossi" />
 
         <TextView
             android:id="@+id/profileEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="450dp"
+            android:layout_marginTop="490dp"
+            android:layout_gravity="center_horizontal"
             android:textAppearance="?attr/textAppearanceSubtitle1"
-            android:textColor="?attr/colorOnSurface"
+            android:textColor="@color/black"
+            android:textSize="23sp"
             tools:text="mario.rossi@gmail.com" />
 
         <Button
             android:id="@+id/changePasswordButton"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_width="280dp"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="600dp"
+            android:layout_marginTop="580dp"
             android:backgroundTint="@color/deepPurple"
             android:text="@string/changePassword"
             android:textAllCaps="false"

@@ -24,7 +24,7 @@ class FPWorkoutAdapter(private var context: Context, private var workoutList: Li
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
         var workout = workoutList[position]
         holder.workoutName.text = workout.name
-        holder.workoutDuration.text = workout.duration.toString()
+        holder.workoutDuration.text = "${workout.duration.toString()} s"
         holder.workoutCategory.text = workout.category
         holder.workoutAuthor.text = workout.userName
         holder.workoutLikes.text = workout.likes.toString()
