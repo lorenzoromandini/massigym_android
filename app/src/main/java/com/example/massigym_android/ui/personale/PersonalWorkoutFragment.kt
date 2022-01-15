@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.massigym_android.databinding.FragmentPersonalWorkoutBinding
 import com.example.massigym_android.model.Workout
-import com.example.massigym_android.ui.workout.CLAWorkoutAdapter
 import com.example.massigym_android.ui.workout.WorkoutDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -72,7 +71,7 @@ class PersonalWorkoutFragment : Fragment() {
                 for (document in documents) {
                     val workout = documents.toObjects(Workout::class.java)
                     binding.recyclerPersonalWorkout.adapter =
-                        CLAWorkoutAdapter(requireContext(), workout)
+                        FPWorkoutAdapter(requireContext(), workout)
                     val id = document.id
                     workoutIDList.add(id)
                 }

@@ -26,7 +26,6 @@ class FPWorkoutAdapter(private var context: Context, private var workoutList: Li
         holder.workoutName.text = workout.name
         holder.workoutDuration.text = "${workout.duration.toString()} s"
         holder.workoutCategory.text = workout.category
-        holder.workoutAuthor.text = workout.userName
         holder.workoutLikes.text = workout.likes.toString()
 
         if (workout.imageUrl == "") {
@@ -50,7 +49,6 @@ class FPWorkoutAdapter(private var context: Context, private var workoutList: Li
         var workoutImage: ImageView = itemView.findViewById(R.id.workout_image)
         var workoutDuration: TextView = itemView.findViewById(R.id.workout_time)
         var workoutCategory: TextView = itemView.findViewById(R.id.workout_category)
-        var workoutAuthor: TextView = itemView.findViewById(R.id.workout_author)
         var workoutLikes: TextView = itemView.findViewById(R.id.workout_likes)
 
     }

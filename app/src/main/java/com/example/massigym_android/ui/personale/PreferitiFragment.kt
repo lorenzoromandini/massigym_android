@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.massigym_android.databinding.FragmentPreferitiBinding
 import com.example.massigym_android.model.Workout
-import com.example.massigym_android.ui.workout.CLAWorkoutAdapter
 import com.example.massigym_android.ui.workout.WorkoutDetails
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -71,7 +70,7 @@ class PreferitiFragment : Fragment() {
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     val workout = documents.toObjects(Workout::class.java)
-                    binding.recyclerPreferiti.adapter = CLAWorkoutAdapter(requireContext(), workout)
+                    binding.recyclerPreferiti.adapter = FPWorkoutAdapter(requireContext(), workout)
                     val id = document.id
                     workoutIDList.add(id)
                 }

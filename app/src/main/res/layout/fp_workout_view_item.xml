@@ -44,7 +44,7 @@
 
                         <TextView
                             android:id="@+id/workout_name"
-                            android:layout_width="160dp"
+                            android:layout_width="220dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
@@ -54,15 +54,7 @@
                             android:textStyle="bold|normal"
                             tools:text="Name" />
 
-                        <TextView
-                            android:id="@+id/workout_time"
-                            android:layout_width="50dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:gravity="start"
-                            android:textColor="@android:color/black"
-                            android:textSize="15sp"
-                            tools:text="270 s" />
+
 
                         <ImageView
                             android:layout_width="40dp"
@@ -91,8 +83,8 @@
                             tools:text="cardio" />
 
                         <TextView
-                            android:id="@+id/workout_author"
-                            android:layout_width="165dp"
+                            android:id="@+id/workout_time"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
@@ -100,14 +92,14 @@
                             android:textColor="@android:color/darker_gray"
                             android:textSize="15sp"
                             android:textStyle="bold|normal"
-                            tools:text="admin" />
+                            tools:text="270 s" />
 
                         <TextView
                             android:id="@+id/workout_likes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="8dp"
+                            android:layout_marginLeft="115dp"
                             android:textColor="@android:color/black"
                             android:textSize="15sp"
                             android:textStyle="bold|normal"
