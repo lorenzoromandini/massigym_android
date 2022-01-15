@@ -2,6 +2,7 @@ package com.example.massigym_android.ui.workout
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,13 @@ class LegsFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        getListData()
+        @Suppress("DEPRECATION")
+        Handler().postDelayed(
+            {
+                getListData()
+            },
+            2000
+        )
 
         binding.recyclerLegs.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {

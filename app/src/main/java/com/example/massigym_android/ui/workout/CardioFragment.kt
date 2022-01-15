@@ -2,6 +2,7 @@ package com.example.massigym_android.ui.workout
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.massigym_android.model.Workout
 import com.example.massigym_android.databinding.FragmentCardioBinding
+import com.example.massigym_android.ui.auth.LoginActivity
+import com.example.massigym_android.ui.common.BottomNavBar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -34,7 +37,13 @@ class CardioFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        getListData()
+        @Suppress("DEPRECATION")
+        Handler().postDelayed(
+            {
+                getListData()
+            },
+            2000
+        )
 
         binding.recyclerCardio.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {

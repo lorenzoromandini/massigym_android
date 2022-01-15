@@ -2,6 +2,7 @@ package com.example.massigym_android.ui.personale
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +48,13 @@ class PersonalWorkoutFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        getListData()
+        @Suppress("DEPRECATION")
+        Handler().postDelayed(
+            {
+                getListData()
+            },
+            2000
+        )
 
         binding.recyclerPersonalWorkout.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
