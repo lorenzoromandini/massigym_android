@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -53,6 +54,8 @@ class AddWorkout : AppCompatActivity() {
     private var searchKeyList: ArrayList<String> = arrayListOf()
     private var splitName: List<String> = listOf()
 
+    private lateinit var documentID: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddWorkoutBinding.inflate(layoutInflater)
@@ -64,6 +67,8 @@ class AddWorkout : AppCompatActivity() {
         auth = FirebaseAuth.getInstance().currentUser!!
 
         storageRef = FirebaseStorage.getInstance().reference
+
+        documentID = getRandomString(20)
 
         // ottiene lo username dell'utente autenticato
         FirebaseFirestore.getInstance().collection("users").document(auth.email!!)
@@ -201,6 +206,10 @@ class AddWorkout : AppCompatActivity() {
         workoutMap["searchKeywords"] = searchKeyList
         workoutMap["totalLikes"] = 0
 
+        // inserisce il workout all'interno di Cloud Firestore
+        FirebaseFirestore.getInstance()
+            .collection("workouts").document(documentID).set(workoutMap)
+
         // se è stata inserita un'immagine
         if (imageName != "") {
             // caricamento dell'immagine all'interno dello Storage di Firebase a partire dall'uri
@@ -211,7 +220,9 @@ class AddWorkout : AppCompatActivity() {
                 val downloadURLImage =
                     storageRef.child("${category}/${auth.email}_${name}_immagine").downloadUrl
                 downloadURLImage.addOnSuccessListener {
-                    workoutMap["imageUrl"] = downloadURLImage
+                    // caricamento dell'url dell'immagine all'interno di Firestore
+                    FirebaseFirestore.getInstance().collection("workouts").document(documentID)
+                        .update("imageUrl", it.toString())
                 }.addOnFailureListener {
                 }
 
@@ -233,7 +244,9 @@ class AddWorkout : AppCompatActivity() {
                 val downloadURLVideo =
                     storageRef.child("${category}/${auth.email}_${name}_video").downloadUrl
                 downloadURLVideo.addOnSuccessListener {
-                    workoutMap["videoUrl"] = downloadURLVideo
+                    // caricamento dell'url del video all'interno di Firestore
+                    FirebaseFirestore.getInstance().collection("workouts").document(documentID)
+                        .update("videoUrl", it.toString())
                 }.addOnFailureListener {
                 }
 
@@ -244,11 +257,6 @@ class AddWorkout : AppCompatActivity() {
                 ).show()
             }
         }
-
-        // inserisce il workout all'interno di Cloud Firestore
-        FirebaseFirestore.getInstance()
-            .collection("workouts").document().set(workoutMap)
-
 
         // incrementa di 1 il numero di workouts di quella categoria nel campo delle statistiche
         FirebaseFirestore.getInstance()
@@ -298,10 +306,10 @@ class AddWorkout : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray,
+        grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
+        when(requestCode) {
             STORAGE_PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && REQUEST_CODE == IMAGE_CODE) {
                     // permission from popup was granted
@@ -316,6 +324,13 @@ class AddWorkout : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun getRandomString(length: Int) : String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 
 }

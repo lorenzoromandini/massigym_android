@@ -40,7 +40,7 @@
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="80dp"
                     android:backgroundTint="@color/deepPurple"
                     android:text="Seleziona Immagine"
                     android:textAllCaps="false"
@@ -53,10 +53,10 @@
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="150dp"
+                    android:layout_marginTop="130dp"
                     android:textAlignment="center"
                     tools:text="Nessune file selezionato"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -165,7 +165,7 @@
                     android:layout_marginTop="650dp"
                     android:textAlignment="center"
                     tools:text="Nessune file selezionato"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <Button
@@ -174,7 +174,7 @@
                     android:layout_width="350dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="720dp"
+                    android:layout_marginTop="730dp"
                     android:layout_marginBottom="60dp"
                     android:backgroundTint="@color/pink"
                     android:text="Inserisci Workout"
