@@ -326,6 +326,7 @@ class AddWorkout : AppCompatActivity() {
         }
     }
 
+    // metodo che genera casualmente una stringa della lunghezza scelta
     fun getRandomString(length: Int) : String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
         return (1..length)
