@@ -201,10 +201,6 @@ class AddWorkout : AppCompatActivity() {
         workoutMap["searchKeywords"] = searchKeyList
         workoutMap["totalLikes"] = 0
 
-        // inserisce il workout all'interno di Cloud Firestore
-        FirebaseFirestore.getInstance()
-            .collection("workouts").document().set(workoutMap)
-
         // se è stata inserita un'immagine
         if (imageName != "") {
             // caricamento dell'immagine all'interno dello Storage di Firebase a partire dall'uri
@@ -215,9 +211,7 @@ class AddWorkout : AppCompatActivity() {
                 val downloadURLImage =
                     storageRef.child("${category}/${auth.email}_${name}_immagine").downloadUrl
                 downloadURLImage.addOnSuccessListener {
-                    // caricamento dell'url dell'immagine all'interno di Firestore
-                    FirebaseFirestore.getInstance().collection("workouts").document()
-                        .update("imageUrl", it.toString())
+                    workoutMap["imageUrl"] = ""
                 }.addOnFailureListener {
                 }
 
@@ -239,9 +233,7 @@ class AddWorkout : AppCompatActivity() {
                 val downloadURLVideo =
                     storageRef.child("${category}/${auth.email}_${name}_video").downloadUrl
                 downloadURLVideo.addOnSuccessListener {
-                    // caricamento dell'url del video all'interno di Firestore
-                    FirebaseFirestore.getInstance().collection("workouts").document()
-                        .update("videoUrl", it.toString())
+                    workoutMap["videoUrl"] = ""
                 }.addOnFailureListener {
                 }
 
@@ -252,6 +244,11 @@ class AddWorkout : AppCompatActivity() {
                 ).show()
             }
         }
+
+        // inserisce il workout all'interno di Cloud Firestore
+        FirebaseFirestore.getInstance()
+            .collection("workouts").document().set(workoutMap)
+
 
         // incrementa di 1 il numero di workouts di quella categoria nel campo delle statistiche
         FirebaseFirestore.getInstance()
@@ -301,10 +298,10 @@ class AddWorkout : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode) {
+        when (requestCode) {
             STORAGE_PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && REQUEST_CODE == IMAGE_CODE) {
                     // permission from popup was granted
