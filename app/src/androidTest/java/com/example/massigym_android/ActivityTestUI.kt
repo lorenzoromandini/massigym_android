@@ -70,6 +70,7 @@ class ActivityTestUI {
 
 
     // test per la verifica della visualizzazione e del funzionamento di alcuni contenuti dell'activity di Modifica password
+    // NOTA : per effettuare il test l'utente deve essere autenticato
     @Test
     fun checkChangePassword() {
         launch(ChangePassword::class.java)
