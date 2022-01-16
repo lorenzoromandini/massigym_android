@@ -68,6 +68,7 @@ class ActivityTestUI {
         onView(withId(R.id.layout_bottom_navigation)).check(matches(isDisplayed()))
     }
 
+
     // test per la verifica della visualizzazione e del funzionamento di alcuni contenuti dell'activity di Modifica password
     @Test
     fun checkChangePassword() {
