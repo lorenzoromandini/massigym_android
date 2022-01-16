@@ -15,6 +15,7 @@ import com.example.massigym_android.databinding.FragmentArmsBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
+// classe che gestisce la lista degli allenamenti della categoria "arms"
 class ArmsFragment : Fragment() {
 
     private lateinit var binding: FragmentArmsBinding
@@ -30,11 +31,14 @@ class ArmsFragment : Fragment() {
 
         binding = FragmentArmsBinding.inflate(inflater, container, false)
 
+        // il layoutManager è responsabile della misurazione e del posizionamento delle viste degli elementi
+        // all'interno della RecyclerView
         binding.recyclerArms.apply {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
         @Suppress("DEPRECATION")
+        // metodo che permette di eseguire i comandi al suo interno dopo un tempo prestabilito
         Handler().postDelayed(
             {
                 getListData()
@@ -42,6 +46,8 @@ class ArmsFragment : Fragment() {
             2000
         )
 
+        // metodo che al click su un elemento della lista reindirizza l'utente alla schermata dei dettagli
+        // di quell'allenamento, passando come parametro alla classe WorkouDetails l'id dell'allenamento selezionato
         binding.recyclerArms.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 id = workoutIDList[position]
@@ -58,7 +64,8 @@ class ArmsFragment : Fragment() {
         return binding.root
     }
 
-
+    // metodo che serve ad ottenere i workout della categoria "arms" contenuti all'interno del database Cloud Firestore
+    // ordinati per numero di likes decrescente e per ordine alfabetico
     private fun getListData() {
         FirebaseFirestore.getInstance().collection("workouts")
             .whereEqualTo("category", "arms")
@@ -66,6 +73,8 @@ class ArmsFragment : Fragment() {
             .orderBy("name", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { documents ->
+                // se esistono allenamenti vengono collegati alla RecyclerView tramite l'adapter
+                // definito in un'altra classe
                 for (document in documents) {
                     val workout = documents.toObjects(Workout::class.java)
                     binding.recyclerArms.adapter = CLAWorkoutAdapter(requireContext(), workout)
@@ -80,14 +89,22 @@ class ArmsFragment : Fragment() {
             }
     }
 
+    // metodo che gestisce la barra di ricerca tramite form di inserimento e bottone per effettuare la
+    // ricerca all'interno del database
     private fun search() {
         Toast.makeText(context,
             "Ricerca...",
             Toast.LENGTH_SHORT).show()
         val insertName = binding.searchName.text.toString()
+        // se il campo è vuoto
         if (insertName == "") {
+            // restituisce tutti gli allenamenti della relativa categoria
             getListData()
+            // se il campo non è vuoto
         } else {
+            // ottiene i workout della categoria "arms" che nel campo "searchKeywords" contengono una stringa
+            // uguale a quella inserita dall'utente nella form,
+            // ordinati per numero di likes decrescente e per ordine alfabetico
             FirebaseFirestore.getInstance().collection("workouts")
                 .whereEqualTo("category", "arms")
                 .whereArrayContains("searchKeywords", insertName)
@@ -95,6 +112,8 @@ class ArmsFragment : Fragment() {
                 .orderBy("name", Query.Direction.ASCENDING)
                 .get()
                 .addOnSuccessListener { documents ->
+                    // se esistono allenamenti vengono collegati alla RecyclerView tramite l'adapter
+                    // definito in un'altra classe
                     for (document in documents) {
                         val workout = documents.toObjects(Workout::class.java)
                         binding.recyclerArms.adapter =
@@ -112,6 +131,7 @@ class ArmsFragment : Fragment() {
 
     }
 
+    // interfaccia che serve a settare il click di un elemento della lista
     interface OnItemClickListener {
         fun onItemClicked(position: Int, view: View)
     }

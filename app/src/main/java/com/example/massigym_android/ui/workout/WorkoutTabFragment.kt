@@ -10,6 +10,8 @@ import com.example.massigym_android.R
 import com.example.massigym_android.databinding.FragmentWorkoutBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
+// classe che gestisce la schermata dei Workout, che funge da contenitore per le schermate
+// CardioFragment, LegsFragment e ArmsFragment
 class WorkoutTabFragment : Fragment() {
 
     private lateinit var binding: FragmentWorkoutBinding
@@ -31,6 +33,8 @@ class WorkoutTabFragment : Fragment() {
         return binding.root
     }
 
+    // metodo che setta la visualizzazione delle schermate attraverso l'adapter definito
+    // in un'altra classe
     private fun setupViewPagerWithTabs() {
         val tabLayout = binding.tabBarWorkout
         val viewPager = binding.pager
@@ -43,6 +47,7 @@ class WorkoutTabFragment : Fragment() {
         }.attach()
     }
 
+    // metodo che setta il nome delle schermate nella TabBar
     private fun getTabTitle(position: Int): String? {
         return when (position) {
             CARDIO_PAGE_INDEX -> getString(R.string.cardioCategory)

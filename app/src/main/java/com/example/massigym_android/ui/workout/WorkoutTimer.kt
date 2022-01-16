@@ -5,7 +5,7 @@ import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.example.massigym_android.databinding.ActivityWorkoutTimerBinding
 
-
+// classe che gestisce il timer dell'allenamento
 class WorkoutTimer : AppCompatActivity() {
 
     private lateinit var binding: ActivityWorkoutTimerBinding
@@ -53,12 +53,14 @@ class WorkoutTimer : AppCompatActivity() {
         }
     }
 
+    // metodo che rimette in funzionamento il timer da dove si era fermato
     override fun onResume() {
         super.onResume()
 
         initTimer()
     }
 
+    // metodo che mette in pausa il timer
     override fun onPause() {
         super.onPause()
 
@@ -67,6 +69,7 @@ class WorkoutTimer : AppCompatActivity() {
         }
     }
 
+    // metodo che inizializza il timer
     private fun initTimer() {
         if (timerState == TimerState.stopped || timerState == TimerState.paused) {
             secondsRemaining = duration!!
@@ -80,6 +83,7 @@ class WorkoutTimer : AppCompatActivity() {
         updateCountdownUI()
     }
 
+    // metodo che inizializza il timer una volta che il countdown è terminato
     private fun onTimerFinished() {
         timerState = TimerState.stopped
 
@@ -93,6 +97,7 @@ class WorkoutTimer : AppCompatActivity() {
         updateCountdownUI()
     }
 
+    // metodo che mette in funzionamento in timer
     private fun startTimer() {
         timerState = TimerState.running
 
@@ -107,11 +112,13 @@ class WorkoutTimer : AppCompatActivity() {
         }.start()
     }
 
+    // metodo che aggiorna la barra del progresso del timer
     private fun updateCountdownUI() {
         binding.timerView.countdownTextView.text = "$secondsRemaining"
         binding.timerView.progressBar.progress = duration!! - secondsRemaining
     }
 
+    // metodo che aggiorna la vista dei bottoni
     private fun updateButtons() {
         when (timerState) {
             TimerState.running -> {

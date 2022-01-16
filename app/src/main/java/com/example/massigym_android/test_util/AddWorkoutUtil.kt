@@ -1,7 +1,10 @@
 package com.example.massigym_android.test_util
 
+
+// object utilizzato per effettuare i test sulla validazione dei campi per l'inserimento di un nuovo workout
 object AddWorkoutUtil {
 
+    // funzione che controlla i campi di inserimento
     fun validateAddWorkoutInput(
         nome: String,
         categoria: String,

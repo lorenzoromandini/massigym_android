@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-
+// classe che gestisce la lista degli allenamenti inseriti dall'utente
 class PersonalWorkoutFragment : Fragment() {
 
     private lateinit var binding: FragmentPersonalWorkoutBinding
@@ -44,11 +44,15 @@ class PersonalWorkoutFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance().currentUser!!
 
+        // il layoutManager è responsabile della misurazione e del posizionamento delle viste degli elementi
+        // all'interno della RecyclerView
         binding.recyclerPersonalWorkout.apply {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
+
         @Suppress("DEPRECATION")
+        // metodo che permette di eseguire i comandi al suo interno dopo un tempo prestabilito
         Handler().postDelayed(
             {
                 getListData()
@@ -56,6 +60,8 @@ class PersonalWorkoutFragment : Fragment() {
             2000
         )
 
+        // metodo che al click su un elemento della lista reindirizza l'utente alla schermata dei dettagli
+        // di quell'allenamento, passando come parametro alla classe WorkouDetails l'id dell'allenamento selezionato
         binding.recyclerPersonalWorkout.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 id = workoutIDList[position]
@@ -68,6 +74,8 @@ class PersonalWorkoutFragment : Fragment() {
         return binding.root
     }
 
+    // metodo che serve ad ottenere i workout inseriti dall'utente contenuti all'interno del database Cloud Firestore
+    // ordinati per numero di likes decrescente e per ordine alfabetico
     private fun getListData() {
         FirebaseFirestore.getInstance().collection("workouts")
             .whereEqualTo("userMail", auth.email.toString())
@@ -75,6 +83,8 @@ class PersonalWorkoutFragment : Fragment() {
             .orderBy("name", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { documents ->
+                // se esistono allenamenti vengono collegati alla RecyclerView tramite l'adapter
+                // definito in un'altra classe
                 for (document in documents) {
                     val workout = documents.toObjects(Workout::class.java)
                     binding.recyclerPersonalWorkout.adapter =
@@ -90,6 +100,7 @@ class PersonalWorkoutFragment : Fragment() {
             }
     }
 
+    // interfaccia che serve a settare il click di un elemento della lista
     interface OnItemClickListener {
         fun onItemClicked(position: Int, view: View)
     }
@@ -110,6 +121,8 @@ class PersonalWorkoutFragment : Fragment() {
         })
     }
 
+    // metodo che permette di tornare indietro alla schermata precedente premendo l'apposito pulsante sulla AppBar
+    // in alto a sinistra, facendo uso del navigation
     private fun setupToolbarWithNavigation() {
         toolbar = binding.toolbarPersonalWorkout
         toolbar.setNavigationOnClickListener {

@@ -15,9 +15,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 
+// classe per i test della UI di alcune activity
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ActivityTestUI {
 
+    // test per la verifica della visualizzazione del contenuto del main
     @Test
     fun checkMainActivityVisibility() {
         launch(MainActivity::class.java)
@@ -25,6 +27,7 @@ class ActivityTestUI {
         onView(withId(R.id.layout_mainActivity)).check(matches(isDisplayed()))
     }
 
+    // test per la verifica della visualizzazione e del funzionamento di alcuni contenuti delle activity di Login e Reset password
     @Test
     fun checkLoginAndResetActivity() {
         launch(LoginActivity::class.java)
@@ -44,6 +47,7 @@ class ActivityTestUI {
         onView(withId(R.id.layout_login)).check(matches(isDisplayed()))
     }
 
+    // test per la verifica della visualizzazione e del funzionamento di alcuni contenuti dell'activity di Registrazione
     @Test
     fun checkRegistrationActivity() {
         launch(RegistrationActivity::class.java)
@@ -56,6 +60,7 @@ class ActivityTestUI {
 
     }
 
+    // test per la verifica della visualizzazione del contenuto della BottomNavBar
     @Test
     fun checkBottomNavBarVisibility() {
         launch(BottomNavBar::class.java)
@@ -63,6 +68,7 @@ class ActivityTestUI {
         onView(withId(R.id.layout_bottom_navigation)).check(matches(isDisplayed()))
     }
 
+    // test per la verifica della visualizzazione e del funzionamento di alcuni contenuti dell'activity di Modifica password
     @Test
     fun checkChangePassword() {
         launch(ChangePassword::class.java)

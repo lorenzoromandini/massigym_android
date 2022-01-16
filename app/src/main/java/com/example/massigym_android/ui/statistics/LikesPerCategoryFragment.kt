@@ -18,7 +18,7 @@ import com.anychart.enums.TooltipPositionMode
 import com.example.massigym_android.databinding.FragmentLikesPerCategoryBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-
+// classe che gestisce l'istogramma sul numero di likes agli allenamenti di ciascuna categoria
 class LikesPerCategoryFragment : Fragment() {
 
     private lateinit var binding: FragmentLikesPerCategoryBinding
@@ -40,6 +40,7 @@ class LikesPerCategoryFragment : Fragment() {
         getData("arms")
 
         @Suppress("DEPRECATION")
+        // metodo che permette di eseguire i comandi al suo interno dopo un tempo prestabilito
         Handler().postDelayed(
             {
                 barChart()
@@ -50,6 +51,7 @@ class LikesPerCategoryFragment : Fragment() {
         return binding.root
     }
 
+    // metodo che serve ad ottenere le statistiche relative al numero di likes per categoria dal database Cloud Firestore
     private fun getData(category: String) {
 
         FirebaseFirestore.getInstance().collection("statistics").document(category)
@@ -64,12 +66,15 @@ class LikesPerCategoryFragment : Fragment() {
             }
     }
 
+    // metodo che serve a costruire l'istogramma con le statistiche relative al numero di likes per categoria
+    // attraverso la libreria AnyChart
     private fun barChart() {
 
         val cartesian = AnyChart.cartesian()
 
         val dataBarChart: MutableList<DataEntry> = mutableListOf()
 
+        // inserisce categoria e numero di likes per ciascuna categoria negli appositi array
         for (index in totalLikeslist.indices) {
             dataBarChart.add(ValueDataEntry(categoryList.elementAt(index),
                 totalLikeslist.elementAt(index)))
@@ -101,6 +106,7 @@ class LikesPerCategoryFragment : Fragment() {
 
 
 
+        // mostra il grafico con le informazioni contenute nel database
         binding.barChart!!.setChart(cartesian)
 
     }

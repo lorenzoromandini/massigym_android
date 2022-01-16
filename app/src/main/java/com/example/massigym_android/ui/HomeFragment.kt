@@ -12,6 +12,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.massigym_android.R
 import com.example.massigym_android.databinding.FragmentHomeBinding
 
+
+// metodo che gestisce la home page dell'app, una volta che l'utente si è autenticato
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -48,6 +50,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    // metodo che setta l'immagine della categoria a partire dall'url
     private fun setCategoryImage(destination: ImageView, url: String) {
         Glide.with(this)
             .load(url)

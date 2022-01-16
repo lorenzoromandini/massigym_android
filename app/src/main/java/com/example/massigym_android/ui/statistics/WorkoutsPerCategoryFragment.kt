@@ -1,24 +1,20 @@
 package com.example.massigym_android.ui.statistics
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.anychart.AnyChart
-import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.example.massigym_android.databinding.FragmentWorkoutsPerCategoryBinding
-import com.example.massigym_android.ui.auth.LoginActivity
-import com.example.massigym_android.ui.common.BottomNavBar
 import com.google.firebase.firestore.FirebaseFirestore
 
 
+// classe che gestisce il grafico a torta col numero di workouts di ciascuna categoria
 class WorkoutsPerCategoryFragment : Fragment() {
 
     private lateinit var binding: FragmentWorkoutsPerCategoryBinding
@@ -40,6 +36,7 @@ class WorkoutsPerCategoryFragment : Fragment() {
         getData("arms")
 
         @Suppress("DEPRECATION")
+        // metodo che permette di eseguire i comandi al suo interno dopo un tempo prestabilito
         Handler().postDelayed(
             {
                 pieChart()
@@ -50,6 +47,7 @@ class WorkoutsPerCategoryFragment : Fragment() {
         return binding.root
     }
 
+    // metodo che serve ad ottenere le statistiche relative al numero di workouts per categoria dal database Cloud Firestore
     private fun getData(category: String) {
 
         FirebaseFirestore.getInstance().collection("statistics").document(category)
@@ -64,12 +62,15 @@ class WorkoutsPerCategoryFragment : Fragment() {
             }
     }
 
+    // metodo che serve a costruire il grafico a torta con le statistiche relative al numero di workouts per categoria
+    // attraverso la libreria AnyChart
     private fun pieChart() {
 
         val pie = AnyChart.pie()
 
         val dataPieChart: MutableList<DataEntry> = mutableListOf()
 
+        // inserisce categoria e numero di workouts per ciascuna categoria negli appositi array
         for (index in totalWorkoutslist.indices) {
             dataPieChart.add(ValueDataEntry(categoryList.elementAt(index), totalWorkoutslist.elementAt(index)))
         }
@@ -80,6 +81,7 @@ class WorkoutsPerCategoryFragment : Fragment() {
 
         pie.title("Workouts per categoria")
 
+        // mostra il grafico con le informazioni contenute nel database
         binding.pieChart!!.setChart(pie)
 
     }

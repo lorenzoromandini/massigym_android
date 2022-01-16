@@ -14,7 +14,7 @@ import android.os.Environment
 import android.widget.Toast
 import com.example.massigym_android.R
 
-
+// metodo che gestisce il video dell'allenamento
 class WorkoutVideo : AppCompatActivity() {
 
     private lateinit var binding: ActivityWorkoutVideoBinding
@@ -68,6 +68,7 @@ class WorkoutVideo : AppCompatActivity() {
         }
     }
 
+    // metodo per il download del video all'interno dell'archivio del telefono dell'utente
     private fun startDownloading() {
         val request = DownloadManager.Request(Uri.parse(videoUrl))
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
@@ -82,7 +83,10 @@ class WorkoutVideo : AppCompatActivity() {
         manager.enqueue(request)
     }
 
+    // metodo che richiama "startDownloading" una volta che l'utente ha concesso i permessi, altrimenti
+    // mostra un Toast con un messaggio
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode) {
             STORAGE_PERMISSION_CODE -> {
                 if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

@@ -1,5 +1,6 @@
 package com.example.massigym_android.model
 
+// model del workout
 data class Workout(
     var userMail: String?,
     var userName: String?,

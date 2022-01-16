@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-
+// classe che gestisce la Modifica della password da parte dell'utente autenticato
 class ChangePassword : AppCompatActivity() {
 
     private lateinit var binding: ActivityChangePasswordBinding
@@ -36,6 +36,8 @@ class ChangePassword : AppCompatActivity() {
 
     }
 
+    // metodo che si occupa della Modifica della password dell'utente attraverso l'utilizzo delle API di Firebase
+    // L'utente deve inserire la nuova password e confermarla
     private fun changePassword() {
 
         val password = binding.changeNewPassword.text.toString().trim()
@@ -43,6 +45,9 @@ class ChangePassword : AppCompatActivity() {
         val confermaPassword = binding.changeConfirmPassword.text.toString().trim()
         val confermaPasswordInput = binding.changeConfirmPassword
 
+        // controllo delle form compilate dall'utente.
+        // Se le regole non vengono rispettate ogni campo mostrerà il proprio specifico errore
+        // e la password non verrà modificata
         if (password.length < 6 || confermaPassword.isEmpty() || password != confermaPassword
         ) {
             if (password.length < 6) {
@@ -57,8 +62,13 @@ class ChangePassword : AppCompatActivity() {
             return
         }
 
+        // se le password inserite rispettano i vincoli si procede con la modifica della password
+        // tramite la funzionalità predefinita di Firebase "updatePassword"
+        // che prende in ingresso la nuova password
         user.updatePassword(password)
             .addOnCompleteListener { task ->
+                // se la Modifica della password va a buon fine l'utente viene sloggato
+                // e successivamente reindirizzato alla schermata di Login
                 if (task.isSuccessful) {
                     Toast.makeText(
                         this,
@@ -67,6 +77,7 @@ class ChangePassword : AppCompatActivity() {
                     ).show()
                     FirebaseAuth.getInstance().signOut()
                     startActivity(Intent(this, LoginActivity::class.java))
+                    // se la Modifica della password non va a buon fine viene mostrato un Toast con un messaggio di errore
                 } else {
                     task.exception!!.printStackTrace()
                     Toast.makeText(

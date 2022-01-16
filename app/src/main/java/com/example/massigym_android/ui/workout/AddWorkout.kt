@@ -21,6 +21,7 @@ import com.google.firebase.storage.StorageReference
 import java.util.*
 
 
+// classe che gestisce l'inserimento di un nuovo allenamento
 class AddWorkout : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddWorkoutBinding
@@ -64,6 +65,7 @@ class AddWorkout : AppCompatActivity() {
 
         storageRef = FirebaseStorage.getInstance().reference
 
+        // ottiene lo username dell'utente autenticato
         FirebaseFirestore.getInstance().collection("users").document(auth.email!!)
             .get()
             .addOnCompleteListener { task ->
@@ -76,6 +78,7 @@ class AddWorkout : AppCompatActivity() {
         binding.titleSelectImage.setText(getString(R.string.noFileSelected))
         binding.titleSelectVideo.setText(getString(R.string.noFileSelected))
 
+        // dropdown della categoria
         val categories = resources.getStringArray(R.array.categories)
         val arrayAdapterCategory = ArrayAdapter(this, R.layout.dropdown_item, categories)
         binding.autoCompleteTextViewCategory.setAdapter(arrayAdapterCategory)
@@ -83,6 +86,7 @@ class AddWorkout : AppCompatActivity() {
             category = adapterView?.getItemAtPosition(i).toString()
         }
 
+        // dropdown della durata
         val durations = resources.getStringArray(R.array.durations)
         val arrayAdapterDuration = ArrayAdapter(this, R.layout.dropdown_item, durations)
         binding.autoCompleteTextViewDuration.setAdapter(arrayAdapterDuration)
@@ -90,6 +94,7 @@ class AddWorkout : AppCompatActivity() {
             duration = adapterView?.getItemAtPosition(i).toString()
         }
 
+        // verifica se al click del bottone i permessi sono stati concessi e agisce di conseguenza
         binding.selectImageButton.setOnClickListener {
             REQUEST_CODE = 1
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -110,6 +115,7 @@ class AddWorkout : AppCompatActivity() {
 
         }
 
+        // verifica se al click del bottone i permessi sono stati concessi e agisce di conseguenza
         binding.selectVideoButton.setOnClickListener {
             REQUEST_CODE = 2
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -136,6 +142,8 @@ class AddWorkout : AppCompatActivity() {
 
     }
 
+    // metodo che si occupa dell'inserimento di un nuovo allenamento attraverso l'utilizzo delle API di Firebase
+    // L'utente deve inserire nome, descrizione, categoria, durata, mentre può scegliere se inserire immagine e video
     private fun addWorkout() {
 
         val name = binding.workoutName.text.toString().trim()
@@ -145,6 +153,9 @@ class AddWorkout : AppCompatActivity() {
         val categoryInput = binding.categoryInput
         val durationInput = binding.durationInput
 
+        // controllo delle form compilate dall'utente.
+        // Se le regole non vengono rispettate ogni campo mostrerà il proprio specifico errore
+        // e l'inserimento non verrà effettuato
         if (name.length < 2 || descrizione.length < 10 ||
             category.isEmpty() || duration.isEmpty()
         ) {
@@ -167,12 +178,15 @@ class AddWorkout : AppCompatActivity() {
 
         splitName = name.split(" ")
 
+        // divide il nome in stringhe contenenti caratteri consecutivi del nome, e le inserisce all'interno
+        // di un array
         for (i in 0..splitName.size - 1) {
             for (y in 1..splitName[i].length) {
                 searchKeyList.add(splitName[i].substring(0, y).toLowerCase())
             }
         }
 
+        // inizializza una HashMap e la popola con gli elementi che verranno poi inseriti all'interno del database
         val workoutMap: MutableMap<Any, Any> = HashMap()
         workoutMap["userMail"] = auth.email.toString()
         workoutMap["userName"] = username
@@ -187,16 +201,21 @@ class AddWorkout : AppCompatActivity() {
         workoutMap["searchKeywords"] = searchKeyList
         workoutMap["totalLikes"] = 0
 
+        // inserisce il workout all'interno di Cloud Firestore
         FirebaseFirestore.getInstance()
             .collection("workouts").document().set(workoutMap)
 
+        // se è stata inserita un'immagine
         if (imageName != "") {
+            // caricamento dell'immagine all'interno dello Storage di Firebase a partire dall'uri
             val uploadImage =
                 storageRef.child("${category}/${auth.email}_${name}_immagine").putFile(imagePath)
             uploadImage.addOnSuccessListener {
+                // ottiene l'url dell'immagine dallo Storage
                 val downloadURLImage =
                     storageRef.child("${category}/${auth.email}_${name}_immagine").downloadUrl
                 downloadURLImage.addOnSuccessListener {
+                    // caricamento dell'url dell'immagine all'interno di Firestore
                     FirebaseFirestore.getInstance().collection("workouts").document()
                         .update("imageUrl", it.toString())
                 }.addOnFailureListener {
@@ -210,13 +229,17 @@ class AddWorkout : AppCompatActivity() {
             }
         }
 
+        // se è stata inserita un video
         if (videoName != "") {
+            // caricamento del video all'interno dello Storage di Firebase a partire dall'uri
             val uploadVideo =
                 storageRef.child("${category}/${auth.email}_${name}_video").putFile(videoPath)
             uploadVideo.addOnSuccessListener {
+                // ottiene l'url del video dallo Storage
                 val downloadURLVideo =
                     storageRef.child("${category}/${auth.email}_${name}_video").downloadUrl
                 downloadURLVideo.addOnSuccessListener {
+                    // caricamento dell'url del video all'interno di Firestore
                     FirebaseFirestore.getInstance().collection("workouts").document()
                         .update("videoUrl", it.toString())
                 }.addOnFailureListener {
@@ -229,6 +252,8 @@ class AddWorkout : AppCompatActivity() {
                 ).show()
             }
         }
+
+        // incrementa di 1 il numero di workouts di quella categoria nel campo delle statistiche
         FirebaseFirestore.getInstance()
             .collection("statistics")
             .document(category)
@@ -240,6 +265,7 @@ class AddWorkout : AppCompatActivity() {
 
     }
 
+    // metodo che permette di selezionare l'immagine dell'allenamento dall'archivio del telefono dell'utente
     private fun selectImage() {
         var intent = Intent()
         intent.setType("image/*")
@@ -247,6 +273,7 @@ class AddWorkout : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(intent, "Seleziona Immagine"), IMAGE_CODE)
     }
 
+    // metodo che permette di selezionare il video dell'allenamento dall'archivio del telefono dell'utente
     private fun selectVideo() {
         var intent = Intent()
         intent.setType("video/*")
@@ -254,6 +281,7 @@ class AddWorkout : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(intent, "Seleziona Video"), VIDEO_CODE)
     }
 
+    // ottiene l'uri dell'immagine e/o del video caricati
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_CODE && resultCode == Activity.RESULT_OK && data != null) {
@@ -268,11 +296,14 @@ class AddWorkout : AppCompatActivity() {
             }
     }
 
+    // metodo che richiama "selectImage" o "selectVideo" una volta che l'utente ha concesso i permessi, altrimenti
+    // mostra un Toast con un messaggio
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode) {
             STORAGE_PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED && REQUEST_CODE == IMAGE_CODE) {

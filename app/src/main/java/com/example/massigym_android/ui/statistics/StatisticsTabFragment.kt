@@ -10,6 +10,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.massigym_android.databinding.FragmentStatisticsBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
+// classe che gestisce la schermata delle Statistiche, che funge da contenitore per le schermate
+// LikesPerCategoryFragment e WorkoutsPerCategoryFragment
 class StatisticsTabFragment : Fragment() {
 
     private lateinit var binding: FragmentStatisticsBinding
@@ -30,18 +32,20 @@ class StatisticsTabFragment : Fragment() {
         return binding.root
     }
 
+    // metodo che setta la visualizzazione delle schermate attraverso l'adapter definito
+    // in un'altra classe
     private fun setupViewPagerWithTabs() {
         val tabLayout = binding.tabBarStatistics
         val viewPager = binding.pager
 
         viewPager.adapter = StatisticsTabAdapter(this)
 
-        // Set the title for each tab
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = getTabTitle(position)
         }.attach()
     }
 
+    // metodo che setta il nome delle schermate nella TabBar
     private fun getTabTitle(position: Int): String? {
         return when (position) {
             WORKOUT_PAGE_INDEX -> "Workouts"
@@ -50,6 +54,8 @@ class StatisticsTabFragment : Fragment() {
         }
     }
 
+    // metodo che permette di tornare indietro alla schermata precedente premendo l'apposito pulsante sulla AppBar
+    // in alto a sinistra, facendo uso del navigation
     private fun setupToolbarWithNavigation() {
         toolbar = binding.toolbarStatistics
         toolbar.setNavigationOnClickListener {
