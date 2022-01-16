@@ -211,7 +211,7 @@ class AddWorkout : AppCompatActivity() {
                 val downloadURLImage =
                     storageRef.child("${category}/${auth.email}_${name}_immagine").downloadUrl
                 downloadURLImage.addOnSuccessListener {
-                    workoutMap["imageUrl"] = ""
+                    workoutMap["imageUrl"] = downloadURLImage
                 }.addOnFailureListener {
                 }
 
@@ -233,7 +233,7 @@ class AddWorkout : AppCompatActivity() {
                 val downloadURLVideo =
                     storageRef.child("${category}/${auth.email}_${name}_video").downloadUrl
                 downloadURLVideo.addOnSuccessListener {
-                    workoutMap["videoUrl"] = ""
+                    workoutMap["videoUrl"] = downloadURLVideo
                 }.addOnFailureListener {
                 }
 
